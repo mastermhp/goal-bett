@@ -10,7 +10,7 @@ function BottomNavigation({ activeTab }) {
     activeTab ||
     (() => {
       if (pathname === "/dashboard") return "home"
-      if (pathname.includes("/dashboard/games")) return "games"
+      if (pathname.includes("/dashboard/casino")) return "casino"
       if (pathname.includes("/dashboard/shop")) return "shop"
       if (pathname.includes("/dashboard/wallet")) return "wallet"
       if (pathname.includes("/dashboard/menu")) return "menu"
@@ -19,7 +19,7 @@ function BottomNavigation({ activeTab }) {
 
   const tabs = [
     { id: "home", icon: Home, label: "Home", href: "/dashboard" },
-    { id: "games", icon: Gamepad2, label: "Games", href: "/dashboard/games" },
+    { id: "casino", icon: Gamepad2, label: "Casino", href: "/dashboard/casino" },
     { id: "shop", icon: ShoppingBag, label: "Shop", href: "/dashboard/shop" },
     { id: "wallet", icon: Wallet, label: "Wallet", href: "/dashboard/wallet" },
     { id: "menu", icon: Menu, label: "Menu", href: "/dashboard/menu" },
