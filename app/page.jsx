@@ -148,7 +148,7 @@
 //         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 //           {/* Left Sidebar - Categories */}
 //           <div className="lg:col-span-1">
-//             <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl">
+//             <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl">
 //               <h3 className="text-lg font-bold mb-4 text-yellow-400">TRENDING</h3>
 //               <div className="space-y-2">
 //                 {[
@@ -208,7 +208,7 @@
 //             </div>
 
 //             {/* Featured Matches */}
-//             <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 mb-6 shadow-2xl">
+//             <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 mb-6 shadow-2xl">
 //               <div className="flex items-center justify-between mb-4">
 //                 <h3 className="text-lg font-bold text-yellow-400">Featured Games</h3>
 //                 <button className="text-orange-300 hover:text-white text-sm flex items-center space-x-1">
@@ -252,7 +252,7 @@
 //             </div>
 
 //             {/* Hot Games Grid */}
-//             <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl">
+//             <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl">
 //               <h3 className="text-lg font-bold text-yellow-400 mb-4">Hot Games</h3>
 //               <div className="grid grid-cols-2 gap-4">
 //                 {trendingGames.map((game, index) => (
@@ -281,7 +281,7 @@
 
 //           {/* Right Sidebar - Bet Slip */}
 //           <div className="lg:col-span-1">
-//             <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl sticky top-6">
+//             <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl sticky top-6">
 //               <div className="flex items-center justify-between mb-4">
 //                 <h3 className="text-lg font-bold text-yellow-400">Bet Slip</h3>
 //                 <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">{selectedBets.length}</span>
@@ -397,23 +397,22 @@
 //   )
 // }
 
-
-"use client"
-import { useState, useEffect } from "react"
-import { Logo } from "@/components/ui/logo"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Search } from "lucide-react"
-import Link from "next/link"
+"use client";
+import { useState, useEffect } from "react";
+import { Logo } from "@/components/ui/logo";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import { LandPlot, MonitorDot, Search, Trophy } from "lucide-react";
+import Link from "next/link";
 
 export default function HomePage() {
-  const [mounted, setMounted] = useState(false)
-  const [selectedSport, setSelectedSport] = useState("soccer")
+  const [mounted, setMounted] = useState(false);
+  const [selectedSport, setSelectedSport] = useState("soccer");
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   const featuredMatches = [
     {
@@ -427,7 +426,11 @@ export default function HomePage() {
         { type: "Both Teams to Score", odds: null },
         { type: "Over 1 Corners in the 1st Half for Brentford", odds: null },
       ],
-      mainOdds: { was: "15.00", now: "17.00", returns: "$10 stake returns $170" },
+      mainOdds: {
+        was: "15.00",
+        now: "17.00",
+        returns: "$10 stake returns $170",
+      },
       time: "Sat 27 Sep",
     },
     {
@@ -451,11 +454,24 @@ export default function HomePage() {
       betBoost: "BET BOOST",
       placed: "321 placed",
       markets: [
-        { type: "Over 1.5 Shots on Target in the 1st Half for Man Utd", odds: null },
-        { type: "Over 1.5 Shots on Target in the 2nd Half for Man Utd", odds: null },
-        { type: "Over 1.5 Shots on Target in the 1st Half for Brentford", odds: null },
+        {
+          type: "Over 1.5 Shots on Target in the 1st Half for Man Utd",
+          odds: null,
+        },
+        {
+          type: "Over 1.5 Shots on Target in the 2nd Half for Man Utd",
+          odds: null,
+        },
+        {
+          type: "Over 1.5 Shots on Target in the 1st Half for Brentford",
+          odds: null,
+        },
       ],
-      mainOdds: { was: "17.00", now: "19.00", returns: "$10 stake returns $190" },
+      mainOdds: {
+        was: "17.00",
+        now: "19.00",
+        returns: "$10 stake returns $190",
+      },
       time: "Sat 27 Sep",
     },
     {
@@ -470,10 +486,14 @@ export default function HomePage() {
         { type: "FT Result: Chelsea", odds: null },
         { type: "Over 2 Goals", odds: null },
       ],
-      mainOdds: { was: "12.00", now: "13.00", returns: "$10 stake returns $130" },
+      mainOdds: {
+        was: "12.00",
+        now: "13.00",
+        returns: "$10 stake returns $130",
+      },
       time: "Sat 27 Sep",
     },
-  ]
+  ];
 
   const liveMatches = [
     {
@@ -512,7 +532,7 @@ export default function HomePage() {
       odds: [],
       time: "",
     },
-  ]
+  ];
 
   const sportsCategories = [
     { id: "american-football", name: "American Football", icon: "🏈" },
@@ -532,13 +552,12 @@ export default function HomePage() {
     { id: "futsal", name: "Futsal", icon: "⚽" },
     { id: "gaelic-sports", name: "Gaelic Sports", icon: "🥍" },
     { id: "golf", name: "Golf", icon: "⛳" },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-orange-600 to-blue-800   rounded-xl p-6 mb-6 relative overflow-hidden shadow-2xl text-white">
-      
-      <div className="absolute top-0 left-0 right-0 h-full bg-black/70 w-full"></div>
-      
+    <div className="min-h-screen bg-gradient-to-r from-[#0A1A2F] to-black/50  rounded-xl p-6 mb-6 relative overflow-hidden shadow-2xl text-white">
+      {/* <div className="absolute top-0 left-0 right-0 h-full bg-black/70 w-full"></div> */}
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
         <div className="container mx-auto px-4">
@@ -547,32 +566,49 @@ export default function HomePage() {
             <div className="flex items-center space-x-6">
               <Logo size="sm" />
               <nav className="hidden md:flex items-center space-x-6 text-sm">
-                <a href="/sports" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="/sports"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Sports
                 </a>
-                <a href="/fantasy" className="text-gray-300 hover:text-white transition-colors">
-                  Fantasy
+                <a
+                  href="/in-play"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  In-Play
                 </a>
-                <a href="/casino" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="/casino"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Casino
-                </a>
-                <a href="/extra" className="text-gray-300 hover:text-white transition-colors">
-                  Extra
                 </a>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-300 text-sm">Responsible Gambling</span>
+              <span className="text-gray-300 text-sm">
+                Responsible Gambling
+              </span>
               <span className="text-gray-300 text-sm">Help</span>
               <Link href="/auth/signup">
-              <AnimatedButton variant="primary" size="sm">
-                Join
-              </AnimatedButton></Link>
-              
+                <AnimatedButton
+                  variant=""
+                  className="bg-[#FFD700] text-[#0A1A2F]"
+                  size="sm"
+                >
+                  Join
+                </AnimatedButton>
+              </Link>
+
               <Link href="/auth/login">
-              <AnimatedButton  variant="glass" size="sm">
-                Log In
-              </AnimatedButton>
+                <AnimatedButton
+                  variant="glass"
+                  className="text-white"
+                  size="sm"
+                >
+                  Log In
+                </AnimatedButton>
               </Link>
             </div>
           </div>
@@ -581,15 +617,24 @@ export default function HomePage() {
           <div className="py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-8">
-                <a href="/sports" className="text-white font-semibold border-b-2 border-green-400 pb-1">
+                {/* <a
+                  href="/sports"
+                  className="text-white font-semibold border-b-2 border-green-400 pb-1"
+                >
                   All Sports
                 </a>
-                <a href="/in-play" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="/in-play"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   In-Play
                 </a>
-                <a href="/casino" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="/casino"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Casino
-                </a>
+                </a> */}
               </div>
               <div className="flex items-center space-x-4">
                 <div className="relative">
@@ -611,7 +656,7 @@ export default function HomePage() {
           {/* Left Sidebar */}
           <div className="w-64 flex-shrink-0">
             {/* Offers Section */}
-            <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl mb-4">
+            <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl mb-4">
               <div className="flex items-center space-x-2 mb-3">
                 <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
                   <span className="text-black text-xs font-bold">$</span>
@@ -621,7 +666,7 @@ export default function HomePage() {
             </div>
 
             {/* Most Used Section */}
-            <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl mb-4">
+            <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#0A1A2F]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl mb-4">
               <h3 className="text-green-400 font-semibold mb-3">MOST USED</h3>
               <div className="space-y-1">
                 <div className="text-orange-300 font-semibold mb-2">A-Z</div>
@@ -646,75 +691,196 @@ export default function HomePage() {
           {/* Main Content */}
           <div className="flex-1">
             {/* Sports Category Icons */}
-            <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl mb-6">
+            <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#0A1A2F]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl mb-6">
               <div className="flex items-center justify-center space-x-8 overflow-x-auto">
                 {[
-                  { name: "Cricket", icon: "🏏" },
-                  { name: "Soccer", icon: "⚽" },
-                  { name: "French Open", icon: "🎾" },
-                  { name: "Casino", icon: "🎰" },
-                  { name: "Basketball", icon: "🏀" },
-                  { name: "Horses", icon: "🏇" },
-                  { name: "Esports", icon: "🎮" },
-                  { name: "Table Tennis", icon: "🏓" },
-                  { name: "Virtual", icon: "���" },
-                  { name: "Fight Night", icon: "🥊" },
-                  { name: "Boxing", icon: "🥊" },
-                  { name: "Golf", icon: "⛳" },
-                  { name: "Formula 1", icon: "🏎️" },
-                  { name: "Futsal", icon: "⚽" },
-                  { name: "Union", icon: "🏉" },
-                  { name: "Badminton", icon: "🏸" },
+                  {
+                    name: "Cricket",
+                    icon: (
+                      <img
+                        src="/sports/cricket.png"
+                        alt="Cricket"
+                        className="h-14"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Soccer",
+                    icon: (
+                      <img
+                        src="/sports/soccer.png"
+                        alt="soccer"
+                        className="h-14"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Casino",
+                    icon: (
+                      <img
+                        src="/sports/casino.png"
+                        alt="casino"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Basketball",
+                    icon: (
+                      <img
+                        src="/sports/basketball.png"
+                        alt="Basketball"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Horses",
+                    icon: (
+                      <img
+                        src="/sports/horse.png"
+                        alt="Horses"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Esports",
+                    icon: (
+                      <img
+                        src="/sports/esports.png"
+                        alt="Esports"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Tennis",
+                    icon: (
+                      <img
+                        src="/sports/tennis.png"
+                        alt="Tennis"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Virtual",
+                    icon: (
+                      <img
+                        src="/sports/virtual.png"
+                        alt="Virtual"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Boxing",
+                    icon: (
+                      <img
+                        src="/sports/boxing.png"
+                        alt="Boxing"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  {
+                    name: "Golf",
+                    icon: (
+                      <img src="/sports/golf.png" alt="Golf" className="h-12" />
+                    ),
+                  },
+                  {
+                    name: "Formula 1",
+                    icon: (
+                      <img
+                        src="/sports/formula1.png"
+                        alt="Formula"
+                        className="h-12"
+                      />
+                    ),
+                  },
+                  // { name: "Futsal", icon: <img src="/sports/futsal.png" alt="Futsal" className="h-12" /> },
+                  // { name: "Union", icon: <img src="/sports/horse.png" alt="Horses" className="h-12" /> },
+                  // { name: "Badminton", icon: <img src="/sports/horse.png" alt="Horses" className="h-12" /> },
                 ].map((sport, index) => (
-                  <div key={index} className="flex flex-col items-center space-y-1 min-w-0">
-                    <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center text-xl hover:bg-orange-600 transition-colors cursor-pointer">
+                  <div
+                    key={index}
+                    className="flex flex-col items-center space-y-1 min-w-0"
+                  >
+                    <div className="w-20 h-18 bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 rounded-lg backdrop-blur-sm border border-[#0A1A2F]/60 p-4 shadow-2xl flex items-center justify-center text-xl hover:bg-orange-600 transition-colors cursor-pointer">
                       {sport.icon}
                     </div>
-                    <span className="text-xs text-gray-300 text-center">{sport.name}</span>
+                    <span className="text-xs text-gray-300 text-center">
+                      {sport.name}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Soccer Navigation Tabs */}
-            <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl mb-6">
+            <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl mb-6">
               <div className="flex items-center space-x-6 border-b border-gray-700 pb-3">
-                <button className="text-white font-semibold border-b-2 border-green-400 pb-2">Soccer</button>
-                <button className="text-gray-400 hover:text-white transition-colors">ATP</button>
-                <button className="text-gray-400 hover:text-white transition-colors">WTA Beijing</button>
-                <button className="text-gray-400 hover:text-white transition-colors">WTA Beijing</button>
-                <button className="text-gray-400 hover:text-white transition-colors">Esoccer</button>
-                <button className="text-gray-400 hover:text-white transition-colors">Upcoming Races - Horses</button>
-                <button className="text-gray-400 hover:text-white transition-colors">In-Play</button>
+                <button className="text-white font-semibold border-b-2 border-green-400 pb-2">
+                  Soccer
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  ATP
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  WTA Beijing
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  WTA Beijing
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  Esoccer
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  Upcoming Races - Horses
+                </button>
+                <button className="text-gray-400 hover:text-white transition-colors">
+                  In-Play
+                </button>
               </div>
             </div>
 
             {/* Featured Matches */}
-            <div className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl mb-6">
+            <div className="bg-gradient-to-b from-[#0A1A2]/80 to-[#0A1A2F]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl p-4 shadow-2xl mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold text-white flex items-center space-x-2">
                   <span>⚽</span>
                   <span>FEATURED MATCHES</span>
                 </h2>
-                <button className="text-gray-400 hover:text-white text-sm">View All</button>
+                <button className="text-gray-400 hover:text-white text-sm">
+                  View All
+                </button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {featuredMatches.map((match) => (
-                  <div key={match.id} className="backdrop-blur-sm border border-orange-600/30 rounded-lg p-4 hover:bg-black/20 cursor-pointer transition-colors">
+                  <div
+                    key={match.id}
+                    className="backdrop-blur-sm border border-orange-600/30 rounded-lg p-4 hover:bg-black/20 cursor-pointer transition-colors"
+                  >
                     {/* Bet Boost Header */}
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-2">
-                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                        <span className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 text-white text-xs px-2 py-1 rounded font-semibold">
                           {match.betBoost}
                         </span>
-                        <span className="text-yellow-400 text-xs">🔥 {match.placed}</span>
+                        <span className="text-yellow-400 text-xs">
+                          🔥 {match.placed}
+                        </span>
                       </div>
                     </div>
 
                     {/* Team Names */}
                     <div className="mb-3">
-                      <h3 className="text-white font-semibold text-sm mb-1">{match.teams}</h3>
+                      <h3 className="text-white font-semibold text-sm mb-1">
+                        {match.teams}
+                      </h3>
                       <div className="flex items-center space-x-2">
                         <span className="text-xs text-gray-400">👕</span>
                         <span className="text-xs text-gray-400">👕</span>
@@ -729,17 +895,25 @@ export default function HomePage() {
                         </div>
                       ))}
                       <button className="text-green-400 text-xs hover:text-green-300">
-                        View {match.markets.length > 3 ? "3" : match.markets.length} more legs
+                        View{" "}
+                        {match.markets.length > 3 ? "3" : match.markets.length}{" "}
+                        more legs
                       </button>
                     </div>
 
                     {/* Odds */}
                     <div className="text-center">
                       <div className="flex items-center justify-center space-x-2 mb-1">
-                        <span className="text-gray-400 text-sm line-through">{match.mainOdds.was}</span>
-                        <span className="text-white text-xl font-bold">▶ {match.mainOdds.now}</span>
+                        <span className="text-gray-400 text-sm line-through">
+                          {match.mainOdds.was}
+                        </span>
+                        <span className="text-white text-xl font-bold">
+                          ▶ {match.mainOdds.now}
+                        </span>
                       </div>
-                      <div className="text-xs text-gray-400 mb-3">{match.mainOdds.returns}</div>
+                      <div className="text-xs text-gray-400 mb-3">
+                        {match.mainOdds.returns}
+                      </div>
                       <div className="text-xs text-gray-400">{match.time}</div>
                     </div>
                   </div>
@@ -750,13 +924,21 @@ export default function HomePage() {
             {/* Live Matches */}
             <div className="space-y-4">
               {liveMatches.map((match) => (
-                <div key={match.id} className="bg-gradient-to-b from-orange-900/80 to-red-900/80 backdrop-blur-sm border border-orange-600/30 rounded-xl p-4 shadow-2xl p-4">
+                <div
+                  key={match.id}
+                  className="bg-gradient-to-b from-[#0A1A2]/80 to-[#0A1A2F]/80 backdrop-blur-sm border border-[#0A1A2F]/60 rounded-xl shadow-2xl p-4"
+                >
                   {match.team2 ? (
                     <div className="grid grid-cols-12 gap-4 items-center">
                       {/* Match Info */}
                       <div className="col-span-1 text-center">
-                        <div className="text-xs text-gray-400">{match.time}</div>
-                        <div className="text-xs text-green-400">📺</div>
+                        <div className="text-xs text-gray-400">
+                          {match.time}
+                        </div>
+                        <div className="text-xs text-green-400">
+                          {" "}
+                          <MonitorDot />{" "}
+                        </div>
                       </div>
 
                       {/* Teams */}
@@ -764,17 +946,29 @@ export default function HomePage() {
                         <div className="space-y-1">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <span className="text-xs">🏆</span>
-                              <span className="text-white text-sm">{match.team1}</span>
+                              <span className="text-xs text-[#FFD700]">
+                                <Trophy />
+                              </span>
+                              <span className="text-white text-sm">
+                                {match.team1}
+                              </span>
                             </div>
-                            <span className="text-white font-bold">{match.score1}</span>
+                            <span className="text-white font-bold">
+                              {match.score1}
+                            </span>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <span className="text-xs">🔴</span>
-                              <span className="text-white text-sm">{match.team2}</span>
+                              <span className="text-xs">
+                                <LandPlot />
+                              </span>
+                              <span className="text-white text-sm">
+                                {match.team2}
+                              </span>
                             </div>
-                            <span className="text-white font-bold">{match.score2}</span>
+                            <span className="text-white font-bold">
+                              {match.score2}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -785,7 +979,7 @@ export default function HomePage() {
                           {match.odds.map((odd, index) => (
                             <button
                               key={index}
-                              className="bg-green-600 hover:bg-green-500 text-white p-2 rounded font-bold transition-colors"
+                              className="bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 hover:bg-green-500 text-white p-2 rounded font-bold transition-colors"
                             >
                               {odd}
                             </button>
@@ -805,5 +999,5 @@ export default function HomePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

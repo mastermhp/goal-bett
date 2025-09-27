@@ -1,14 +1,16 @@
-"use client"
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Search, Filter, Star, Zap, Crown, Gem, Trophy } from "lucide-react"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Search, Filter, Star, Zap, Crown, Gem, Trophy } from "lucide-react";
+import Link from "next/link";
+import { Logo } from "../ui/logo";
+import { AnimatedButton } from "../ui/animated-button";
 
 export function GamesLibrary() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [activeCategory, setActiveCategory] = useState("All Games")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All Games");
 
   const categories = [
     { id: "All Games", name: "All Games", icon: null },
@@ -17,7 +19,7 @@ export function GamesLibrary() {
     { id: "Table Games", name: "Table Games", icon: "🃏" },
     { id: "Jackpots", name: "Jackpots", icon: "💎" },
     { id: "New", name: "New", icon: "⭐" },
-  ]
+  ];
 
   const featuredGames = [
     {
@@ -38,7 +40,7 @@ export function GamesLibrary() {
       featured: true,
       live: true,
     },
-  ]
+  ];
 
   const games = [
     {
@@ -91,55 +93,106 @@ export function GamesLibrary() {
       rtp: "99.5%",
       new: true,
     },
-  ]
+  ];
 
   const filteredGames = games.filter((game) => {
-    const matchesSearch = game.title.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = activeCategory === "All Games" || game.category === activeCategory
-    return matchesSearch && matchesCategory
-  })
+    const matchesSearch = game.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      activeCategory === "All Games" || game.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-r from-[#0A1A2F] to-black/50  text-white relative overflow-hidden">
+      {/* <div className="absolute top-0 left-0 right-0 h-full bg-black/70 w-full"></div> */}
+
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-purple-800 to-pink-800 border-b border-purple-600/30 shadow-2xl backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div className="container mx-auto px-4">
+          {/* Top Bar */}
+          <div className="flex items-center justify-between py-2 border-b border-gray-700">
             <div className="flex items-center space-x-6">
-              <h1 className="text-2xl font-bold text-yellow-400">Casino</h1>
-              <div className="hidden md:flex items-center space-x-4">
-                <Button variant="ghost" size="sm" className="text-purple-200 hover:text-white">
-                  All Games
-                </Button>
-                <Button variant="ghost" size="sm" className="text-purple-200 hover:text-white">
-                  Live Casino
-                </Button>
-                <Button variant="ghost" size="sm" className="text-purple-200 hover:text-white">
-                  Jackpots
-                </Button>
-              </div>
+              <Logo size="sm" />
+              <nav className="hidden md:flex items-center space-x-6 text-sm">
+                <a
+                  href="/sports"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Sports
+                </a>
+                <a
+                  href="/in-play"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  In-Play
+                </a>
+                <a
+                  href="/casino"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Casino
+                </a>
+              </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-purple-300" />
-                <input
-                  type="text"
-                  placeholder="Search games..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-2 bg-purple-800/50 border border-purple-600/30 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:border-yellow-500"
-                />
-              </div>
-              <Button variant="outline" size="sm" className="border-purple-600/30 text-purple-200 bg-transparent">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
+              <span className="text-gray-300 text-sm">
+                Responsible Gambling
+              </span>
+              <span className="text-gray-300 text-sm">Help</span>
+              <Link href="/auth/signup">
+                <AnimatedButton
+                  variant=""
+                  className="bg-[#FFD700] text-[#0A1A2F]"
+                  size="sm"
+                >
+                  Join
+                </AnimatedButton>
+              </Link>
+
+              <Link href="/auth/login">
+                <AnimatedButton
+                  variant="glass"
+                  className="text-white"
+                  size="sm"
+                >
+                  Log In
+                </AnimatedButton>
+              </Link>
             </div>
           </div>
+
+          {/* Main Navigation */}
+          {/* <div className="py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-8">
+                <a href="/sports" className="text-white font-semibold border-b-2 border-green-400 pb-1">
+                  All Sports
+                </a>
+                <a href="/in-play" className="text-gray-300 hover:text-white transition-colors">
+                  In-Play
+                </a>
+                <a href="/casino" className="text-gray-300 hover:text-white transition-colors">
+                  Casino
+                </a>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="pl-10 pr-4 py-2 w-80 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                  />
+                </div>
+              </div>
+            </div>
+          </div> */}
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 z-50 py-36">
         {/* Categories */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
           {categories.map((category) => (
@@ -148,8 +201,8 @@ export function GamesLibrary() {
               onClick={() => setActiveCategory(category.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                 activeCategory === category.id
-                  ? "bg-yellow-500 text-black"
-                  : "bg-purple-800/50 text-purple-200 hover:bg-purple-700/50"
+                  ? "bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700] backdrop-blur-sm border border-[#0A1A2F]/60  text-black"
+                  : "bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/40 backdrop-blur-sm border border-[#0A1A2F]/60  text-purple-200 hover:bg-[#0A1A2F]/50"
               }`}
             >
               {category.icon && <span>{category.icon}</span>}
@@ -160,15 +213,15 @@ export function GamesLibrary() {
 
         {/* Featured Games */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold mb-4 text-yellow-400 flex items-center gap-2">
+          <h2 className="text-xl font-bold mb-4 text-[#FFD700] flex items-center gap-2">
             <Crown className="h-5 w-5" />
             Featured Games
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredGames.map((game, index) => (
               <Link key={index} href={game.url}>
-                <Card className="bg-gradient-to-br from-purple-800/80 to-pink-800/80 border border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 overflow-hidden group">
-                  <CardContent className="p-0 relative">
+                <div className="m-0 bg-gradient-to-br from-purple-800/80 to-pink-800/80 border border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 overflow-hidden group">
+                  <div className="p-0 relative">
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={game.image || "/placeholder.svg"}
@@ -201,25 +254,37 @@ export function GamesLibrary() {
 
                       {/* Content */}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-xl font-bold text-white mb-2">{game.title}</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">
+                          {game.title}
+                        </h3>
                         <div className="flex items-center justify-between">
-                          <span className="text-purple-300 text-sm">{game.category}</span>
+                          <span className="text-purple-300 text-sm">
+                            {game.category}
+                          </span>
                           {game.jackpot ? (
                             <div className="text-right">
-                              <div className="text-xs text-yellow-400">JACKPOT</div>
-                              <div className="text-lg font-bold text-yellow-400">{game.jackpot}</div>
+                              <div className="text-xs text-[#FFD700]">
+                                JACKPOT
+                              </div>
+                              <div className="text-lg font-bold text-[#FFD700]">
+                                {game.jackpot}
+                              </div>
                             </div>
                           ) : (
                             <div className="text-right">
-                              <div className="text-xs text-purple-300">Players</div>
-                              <div className="text-sm font-bold text-white">{game.players}</div>
+                              <div className="text-xs text-purple-300">
+                                Players
+                              </div>
+                              <div className="text-sm font-bold text-white">
+                                {game.players}
+                              </div>
                             </div>
                           )}
                         </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
@@ -227,15 +292,15 @@ export function GamesLibrary() {
 
         {/* All Games */}
         <div>
-          <h2 className="text-xl font-bold mb-4 text-yellow-400 flex items-center gap-2">
+          <h2 className="text-xl font-bold mb-4 text-[#FFD700] flex items-center gap-2">
             <Gem className="h-5 w-5" />
             All Games
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {filteredGames.map((game, index) => (
               <Link key={index} href={game.url}>
-                <Card className="bg-purple-800/50 border border-purple-600/30 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden group">
-                  <CardContent className="p-0 relative">
+                <div className="bg-purple-800/50 border border-purple-600/30 hover:border-yellow-500/50 rounded-xl transition-all duration-300 overflow-hidden group">
+                  <div className="p-0 relative">
                     <div className="relative aspect-square overflow-hidden">
                       <img
                         src={game.image || "/placeholder.svg"}
@@ -246,50 +311,68 @@ export function GamesLibrary() {
 
                       {/* Badges */}
                       <div className="absolute top-2 left-2 flex flex-col gap-1">
-                        {game.hot && <Badge className="bg-red-500 text-white text-xs animate-pulse">HOT</Badge>}
-                        {game.new && <Badge className="bg-green-500 text-white text-xs">NEW</Badge>}
+                        {game.hot && (
+                          <Badge className="bg-red-500 text-white text-xs animate-pulse">
+                            HOT
+                          </Badge>
+                        )}
+                        {game.new && (
+                          <Badge className="bg-green-500 text-white text-xs">
+                            NEW
+                          </Badge>
+                        )}
                       </div>
 
                       {/* RTP */}
                       <div className="absolute top-2 right-2">
-                        <Badge className="bg-blue-500/80 text-white text-xs">RTP {game.rtp}</Badge>
+                        <Badge className="bg-blue-500/80 text-white text-xs">
+                          RTP {game.rtp}
+                        </Badge>
                       </div>
 
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-3">
-                        <h3 className="text-white font-bold text-sm mb-1 truncate">{game.title}</h3>
+                        <h3 className="text-white font-bold text-sm mb-1 truncate">
+                          {game.title}
+                        </h3>
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-purple-300">{game.category}</span>
-                          <span className="text-purple-300">{game.players}</span>
+                          <span className="text-purple-300">
+                            {game.category}
+                          </span>
+                          <span className="text-purple-300">
+                            {game.players}
+                          </span>
                         </div>
                       </div>
 
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Button className="bg-yellow-500 text-black font-bold hover:bg-yellow-400">Play Now</Button>
+                        <Button className="bg-yellow-500 text-black font-bold hover:bg-[#FFD700]">
+                          Play Now
+                        </Button>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
         </div>
 
         {/* Jackpot Ticker */}
-        <div className="fixed bottom-20 left-0 right-0 z-40 bg-gradient-to-r from-yellow-500 to-orange-500 text-black py-2 overflow-hidden">
+        <div className="fixed bottom-20 left-0 right-0 z-40 bg-gradient-to-r from-[#FFD700] to-[#0A1A2F] text-black py-2 overflow-hidden">
           <div className="animate-marquee whitespace-nowrap flex items-center space-x-8">
             <div className="flex items-center space-x-2">
-              <Trophy className="h-4 w-4" />
-              <span className="font-bold">MEGA JACKPOT: $2,847,392</span>
+              <Trophy className="h-4 w-4 text-[#FFD700]" />
+              <span className="font-bold text-[#0A1A2F]">MEGA JACKPOT: $2,847,392</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Crown className="h-4 w-4" />
-              <span className="font-bold">DAILY JACKPOT: $47,293</span>
+              <Crown className="h-4 w-4 text-red-800"/>
+              <span className="font-bold text-[#0A1A2F]">DAILY JACKPOT: $47,293</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Gem className="h-4 w-4" />
-              <span className="font-bold">HOURLY JACKPOT: $3,847</span>
+              <Gem className="h-4 w-4 text-blue-500" />
+              <span className="font-bold text-[#0A1A2F]">HOURLY JACKPOT: $3,847</span>
             </div>
           </div>
         </div>
@@ -297,13 +380,17 @@ export function GamesLibrary() {
 
       <style jsx>{`
         @keyframes marquee {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
         }
         .animate-marquee {
           animation: marquee 30s linear infinite;
         }
       `}</style>
     </div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { FloatingElements } from "./floating-elements"
 
 export function AuthLayout({ children, title, subtitle, showBack = false, onBack }) {
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden ">
       <FloatingElements />
 
       <div className="relative z-10 min-h-screen flex flex-col">
@@ -27,16 +27,16 @@ export function AuthLayout({ children, title, subtitle, showBack = false, onBack
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex items-center justify-center px-6">
+        <div className="flex-1 flex items-center justify-center px-6 ">
           <div className="w-full max-w-md space-y-8 animate-slide-up">
             {/* Title Section */}
             <div className="text-center space-y-2">
               <h1 className="text-3xl font-bold gradient-text">{title}</h1>
-              {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
+              {subtitle && <p className="text-white">{subtitle}</p>}
             </div>
 
             {/* Form Content */}
-            <div className="glass p-8 rounded-2xl space-y-6 animate-scale-in">{children}</div>
+            <div className=" p-8 rounded-2xl space-y-6 bg-gradient-to-b from-[#0A1A2]/80 to-[#FFD700]/80 backdrop-blur-sm border border-[#0A1A2F]/60 animate-scale-in">{children}</div>
           </div>
         </div>
       </div>
