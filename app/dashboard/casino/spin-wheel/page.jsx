@@ -7,14 +7,14 @@ import { ArrowLeft, Minus, Plus, RotateCcw } from "lucide-react"
 import Link from "next/link"
 
 const wheelSegments = [
-  { label: "100x", color: "#ff6b6b", multiplier: 100 },
-  { label: "2x", color: "#4ecdc4", multiplier: 2 },
-  { label: "5x", color: "#45b7d1", multiplier: 5 },
-  { label: "10x", color: "#96ceb4", multiplier: 10 },
-  { label: "20x", color: "#feca57", multiplier: 20 },
-  { label: "3x", color: "#ff9ff3", multiplier: 3 },
-  { label: "50x", color: "#54a0ff", multiplier: 50 },
-  { label: "4x", color: "#5f27cd", multiplier: 4 },
+  { label: "100x", color: "#FFD700", multiplier: 100 },
+  { label: "2x", color: "#0A1A2F", multiplier: 2 },
+  { label: "5x", color: "#FFD700", multiplier: 5 },
+  { label: "10x", color: "#0A1A2F", multiplier: 10 },
+  { label: "20x", color: "#FFD700", multiplier: 20 },
+  { label: "3x", color: "#0A1A2F", multiplier: 3 },
+  { label: "50x", color: "#FFD700", multiplier: 50 },
+  { label: "4x", color: "#0A1A2F", multiplier: 4 },
 ]
 
 export default function SpinWheelGame() {
@@ -55,30 +55,31 @@ export default function SpinWheelGame() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <Link href="/games">
-            <Button variant="ghost" size="sm">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0A1A2F]/95 to-[#0A1A2F]/90 text-[#F5F5F5] p-3 sm:p-4 lg:p-6">
+      <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <Link href="/dashboard/casino">
+            <Button variant="ghost" size="sm" className="text-[#FFD700] hover:text-[#FFD700]/80 hover:bg-[#FFD700]/10">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Games
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold">Spin the Wheel</h1>
-          <Badge variant="secondary">Balance: ${balance}</Badge>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#FFD700]">Spin the Wheel</h1>
+          <Badge className="bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/50 text-sm sm:text-base">
+            Balance: ${balance}
+          </Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Wheel */}
           <div className="lg:col-span-2">
-            <Card>
-              <CardContent className="p-8">
-                <div className="relative w-80 h-80 mx-auto">
+            <Card className="bg-[#0A1A2F]/80 border-2 border-[#FFD700]/50">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 mx-auto">
                   {/* Wheel */}
                   <div
                     ref={wheelRef}
-                    className="w-full h-full rounded-full border-8 border-gold relative transition-transform duration-3000 ease-out"
+                    className="w-full h-full rounded-full border-4 sm:border-6 lg:border-8 border-[#FFD700] relative transition-transform duration-3000 ease-out"
                     style={{
                       background: `conic-gradient(${wheelSegments
                         .map(
@@ -116,12 +117,12 @@ export default function SpinWheelGame() {
 
                   {/* Pointer */}
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
-                    <div className="w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-gold"></div>
+                    <div className="w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-[#FFD700]"></div>
                   </div>
 
                   {/* Center circle */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gold rounded-full border-4 border-white flex items-center justify-center">
-                    <RotateCcw className="h-6 w-6 text-white" />
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-[#FFD700] rounded-full border-4 border-white flex items-center justify-center">
+                    <RotateCcw className="h-5 w-5 sm:h-6 sm:w-6 text-[#0A1A2F]" />
                   </div>
                 </div>
               </CardContent>
@@ -129,33 +130,49 @@ export default function SpinWheelGame() {
           </div>
 
           {/* Controls */}
-          <div className="space-y-6">
-            {/* Betting */}
-            <Card>
+          <div className="space-y-4 sm:space-y-6">
+            <Card className="bg-[#0A1A2F]/80 border-2 border-[#FFD700]/50">
               <CardHeader>
-                <CardTitle>Place Your Bet</CardTitle>
+                <CardTitle className="text-[#FFD700] text-base sm:text-lg">Place Your Bet</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Bet Amount</span>
+                  <span className="text-xs sm:text-sm text-[#F5F5F5]/70">Bet Amount</span>
                   <div className="flex items-center space-x-2">
-                    <Button size="sm" variant="outline" onClick={() => adjustBet(-10)}>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => adjustBet(-10)}
+                      className="border-[#FFD700]/50 text-[#FFD700] hover:bg-[#FFD700]/10"
+                    >
                       <Minus className="h-4 w-4" />
                     </Button>
-                    <span className="font-bold text-lg w-16 text-center">${betAmount}</span>
-                    <Button size="sm" variant="outline" onClick={() => adjustBet(10)}>
+                    <span className="font-bold text-base sm:text-lg w-14 sm:w-16 text-center text-[#FFD700]">
+                      ${betAmount}
+                    </span>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => adjustBet(10)}
+                      className="border-[#FFD700]/50 text-[#FFD700] hover:bg-[#FFD700]/10"
+                    >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[10, 50, 100, 500].map((amount) => (
                     <Button
                       key={amount}
                       size="sm"
                       variant={betAmount === amount ? "default" : "outline"}
                       onClick={() => setBetAmount(amount)}
+                      className={
+                        betAmount === amount
+                          ? "bg-[#FFD700] text-[#0A1A2F] text-xs sm:text-sm"
+                          : "border-[#FFD700]/50 text-[#FFD700] hover:bg-[#FFD700]/10 text-xs sm:text-sm"
+                      }
                     >
                       ${amount}
                     </Button>
@@ -163,7 +180,7 @@ export default function SpinWheelGame() {
                 </div>
 
                 <Button
-                  className="w-full h-12 text-lg font-bold"
+                  className="w-full h-10 sm:h-12 text-base sm:text-lg font-bold bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A1A2F]"
                   onClick={handleSpin}
                   disabled={isSpinning || spinsLeft <= 0 || betAmount > balance}
                 >
@@ -174,25 +191,25 @@ export default function SpinWheelGame() {
 
             {/* Last Win */}
             {lastWin && (
-              <Card className="border-green-500 bg-green-500/10">
+              <Card className="border-2 border-[#FFD700] bg-[#FFD700]/10">
                 <CardHeader>
-                  <CardTitle className="text-green-500">You Won!</CardTitle>
+                  <CardTitle className="text-[#FFD700] text-base sm:text-lg">You Won!</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-500">${lastWin.amount}</div>
-                    <div className="text-sm text-muted-foreground">{lastWin.multiplier}x multiplier</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-[#FFD700]">${lastWin.amount}</div>
+                    <div className="text-xs sm:text-sm text-[#F5F5F5]/70">{lastWin.multiplier}x multiplier</div>
                   </div>
                 </CardContent>
               </Card>
             )}
 
             {/* Game Info */}
-            <Card>
+            <Card className="bg-[#0A1A2F]/80 border-2 border-[#FFD700]/50">
               <CardHeader>
-                <CardTitle>Game Rules</CardTitle>
+                <CardTitle className="text-[#FFD700] text-base sm:text-lg">Game Rules</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground space-y-2">
+              <CardContent className="text-xs sm:text-sm text-[#F5F5F5]/70 space-y-2">
                 <p>• Place your bet and spin the wheel</p>
                 <p>• Win based on the multiplier you land on</p>
                 <p>• Higher multipliers are rarer</p>
