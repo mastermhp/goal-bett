@@ -173,7 +173,7 @@ export default function HomePage() {
                 <Link href="/in-play" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   In-Play
                 </Link>
-                <Link href="/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link href="/dashboard/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   Casino
                 </Link>
               </nav>
