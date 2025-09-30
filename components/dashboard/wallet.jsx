@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
 import { AnimatedButton } from "@/components/ui/animated-button"
-import { Plus, Minus, CreditCard, Smartphone, Bitcoin } from "lucide-react"
+import { Plus, Minus, CreditCard, Smartphone, Bitcoin, Phone, Banknote, WalletIcon } from "lucide-react"
 
 export function Wallet() {
   const [balance] = useState(125679)
@@ -13,8 +13,12 @@ export function Wallet() {
 
   const paymentMethods = [
     { id: "card", name: "Credit Card", icon: CreditCard, color: "from-blue-500 to-blue-600" },
-    { id: "mobile", name: "Mobile Pay", icon: Smartphone, color: "from-green-500 to-green-600" },
-    { id: "crypto", name: "Cryptocurrency", icon: Bitcoin, color: "from-orange-500 to-orange-600" },
+    { id: "mpesa", name: "MPesa Pay", icon: Smartphone, color: "from-green-500 to-green-600" },
+    { id: "orange", name: "Orange Pay", icon: Phone, color: "from-orange-500 to-orange-600" },
+    { id: "airtime", name: "Airtime", icon: Phone, color: "from-purple-500 to-purple-600" },
+    { id: "cash", name: "Pay via Cash", icon: Banknote, color: "from-emerald-500 to-emerald-600" },
+    { id: "mobile", name: "Mobile Pay", icon: WalletIcon, color: "from-cyan-500 to-cyan-600" },
+    { id: "crypto", name: "Cryptocurrency", icon: Bitcoin, color: "from-yellow-500 to-yellow-600" },
   ]
 
   const transactions = [
@@ -141,20 +145,22 @@ export function Wallet() {
       <Card3D className="mb-8">
         <div className="glass p-6 rounded-2xl">
           <h3 className="font-bold mb-4">Payment Methods</h3>
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {paymentMethods.map((method) => (
               <button
                 key={method.id}
                 className="w-full p-4 rounded-xl glass hover:bg-white/5 transition-colors flex items-center gap-4"
               >
                 <div
-                  className={`w-12 h-12 bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center`}
+                  className={`w-12 h-12 bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center flex-shrink-0`}
                 >
                   <method.icon className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1 text-left">
                   <div className="font-medium">{method.name}</div>
-                  <div className="text-sm text-muted-foreground">Instant transfer</div>
+                  <div className="text-sm text-muted-foreground">
+                    {method.id === "cash" ? "Agent deposit" : "Instant transfer"}
+                  </div>
                 </div>
               </button>
             ))}

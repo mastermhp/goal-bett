@@ -2,7 +2,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Users, Wallet, BarChart3, CreditCard, TrendingUp, Menu, X, Receipt } from "lucide-react"
+import { LayoutDashboard, Users, Wallet, BarChart3, CreditCard, TrendingUp, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -18,12 +18,12 @@ const agentMenuItems = [
     icon: Users,
   },
   {
-    title: "Customer Top-ups",
-    href: "/agent/topups",
+    title: "Sell Credits",
+    href: "/agent/credits",
     icon: CreditCard,
   },
   {
-    title: "Wallet Management",
+    title: "Wallet",
     href: "/agent/wallet",
     icon: Wallet,
   },
@@ -31,11 +31,6 @@ const agentMenuItems = [
     title: "Sales Reports",
     href: "/agent/sales",
     icon: BarChart3,
-  },
-  {
-    title: "Digital Slips",
-    href: "/agent/slips",
-    icon: Receipt,
   },
   {
     title: "Commission",
@@ -54,7 +49,7 @@ export default function AgentSidebar() {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 md:hidden"
+        className="fixed top-4 left-4 z-50 md:hidden text-[#FFD700]"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -63,14 +58,14 @@ export default function AgentSidebar() {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-64 bg-card border-r border-border transform transition-transform duration-300 ease-in-out md:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 w-64 bg-[#0A1A2F] border-r border-[#FFD700]/20 transform transition-transform duration-300 ease-in-out md:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-center h-16 border-b border-border">
-            <h1 className="text-xl font-bold text-primary">Agent Panel</h1>
+          <div className="flex items-center justify-center h-16 border-b border-[#FFD700]/20">
+            <h1 className="text-xl font-bold text-[#FFD700]">Agent Panel</h1>
           </div>
 
           {/* Navigation */}
@@ -86,8 +81,8 @@ export default function AgentSidebar() {
                   className={cn(
                     "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                      ? "bg-[#FFD700] text-[#0A1A2F]"
+                      : "text-[#F5F5F5] hover:bg-[#FFD700]/10 hover:text-[#FFD700]",
                   )}
                   onClick={() => setIsOpen(false)}
                 >
@@ -99,19 +94,19 @@ export default function AgentSidebar() {
           </nav>
 
           {/* Agent info */}
-          <div className="p-4 border-t border-border">
+          <div className="p-4 border-t border-[#FFD700]/20">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-primary-foreground">A</span>
+              <div className="w-8 h-8 bg-[#FFD700] rounded-full flex items-center justify-center">
+                <span className="text-sm font-medium text-[#0A1A2F]">A</span>
               </div>
               <div>
-                <p className="text-sm font-medium">Agent Smith</p>
-                <p className="text-xs text-muted-foreground">Agent Owner</p>
+                <p className="text-sm font-medium text-white">Agent Smith</p>
+                <p className="text-xs text-[#F5F5F5]">Agent Owner</p>
               </div>
             </div>
-            <div className="mt-3 p-3 bg-accent/50 rounded-lg">
-              <p className="text-xs text-muted-foreground">Wallet Balance</p>
-              <p className="text-lg font-bold text-primary">$12,450</p>
+            <div className="mt-3 p-3 bg-[#FFD700]/10 rounded-lg border border-[#FFD700]/30">
+              <p className="text-xs text-[#F5F5F5]">Wallet Balance</p>
+              <p className="text-lg font-bold text-[#FFD700]">$12,450</p>
             </div>
           </div>
         </div>

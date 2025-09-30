@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Search, Filter, Users, Play, Volume2, VolumeX, Maximize, Settings } from "lucide-react"
+import { Search, Filter, Users, Play, Volume2, VolumeX } from "lucide-react"
 
 export default function LiveCasinoPage() {
   const [selectedGame, setSelectedGame] = useState(null)
@@ -115,59 +115,75 @@ export default function LiveCasinoPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-950 via-orange-950 to-red-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0A1A2F]/95 to-[#0A1A2F]/90 text-white overflow-x-hidden">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-red-800 to-orange-800 border-b border-red-600/30 shadow-2xl backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <h1 className="text-2xl font-bold text-yellow-400 flex items-center gap-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+      <header className="sticky top-0 z-50 bg-[#0A1A2F]/95 backdrop-blur-md border-b border-[#FFD700]/20 shadow-lg">
+        <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+            <div className="flex items-center space-x-4 sm:space-x-6 w-full sm:w-auto">
+              <h1 className="text-xl sm:text-2xl font-bold text-[#FFD700] flex items-center gap-2">
+                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full animate-pulse"></div>
                 Live Casino
               </h1>
               <div className="hidden md:flex items-center space-x-4">
-                <Button variant="ghost" size="sm" className="text-red-200 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#F5F5F5]/80 hover:text-[#FFD700] hover:bg-[#FFD700]/10"
+                >
                   All Tables
                 </Button>
-                <Button variant="ghost" size="sm" className="text-red-200 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#F5F5F5]/80 hover:text-[#FFD700] hover:bg-[#FFD700]/10"
+                >
                   VIP Tables
                 </Button>
-                <Button variant="ghost" size="sm" className="text-red-200 hover:text-white">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#F5F5F5]/80 hover:text-[#FFD700] hover:bg-[#FFD700]/10"
+                >
                   Game Shows
                 </Button>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-red-300" />
+            <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto">
+              <div className="relative flex-1 sm:flex-initial">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#F5F5F5]/50" />
                 <input
                   type="text"
                   placeholder="Search live games..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-2 bg-red-800/50 border border-red-600/30 rounded-lg text-white placeholder-red-300 focus:outline-none focus:border-yellow-500"
+                  className="pl-10 pr-4 py-2 w-full sm:w-64 bg-[#0A1A2F]/50 border border-[#FFD700]/20 rounded-lg text-white placeholder-[#F5F5F5]/50 focus:outline-none focus:border-[#FFD700] text-sm"
                 />
               </div>
-              <Button variant="outline" size="sm" className="border-red-600/30 text-red-200 bg-transparent">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#FFD700]/30 text-[#FFD700] bg-transparent hover:bg-[#FFD700]/10"
+              >
+                <Filter className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Filter</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
         {/* Categories */}
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all ${
                 activeCategory === category.id
-                  ? "bg-yellow-500 text-black"
-                  : "bg-red-800/50 text-red-200 hover:bg-red-700/50"
+                  ? "bg-[#FFD700] text-[#0A1A2F] shadow-lg shadow-[#FFD700]/20"
+                  : "bg-[#0A1A2F]/50 border border-[#FFD700]/20 text-[#F5F5F5] hover:bg-[#FFD700]/10"
               }`}
             >
               {category.name}
@@ -177,65 +193,67 @@ export default function LiveCasinoPage() {
 
         {/* Featured Games */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold mb-4 text-yellow-400 flex items-center gap-2">
+          <h2 className="text-lg sm:text-xl font-bold mb-4 text-[#FFD700] flex items-center gap-2">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             Featured Live Games
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredGames
               .filter((game) => game.featured)
               .map((game) => (
                 <Card
                   key={game.id}
-                  className="bg-gradient-to-br from-red-800/80 to-orange-800/80 border border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 overflow-hidden group cursor-pointer"
+                  className="bg-[#0A1A2F]/60 border border-[#FFD700]/30 hover:border-[#FFD700]/60 transition-all duration-300 overflow-hidden group cursor-pointer shadow-xl"
                   onClick={() => setSelectedGame(game)}
                 >
                   <CardContent className="p-0 relative">
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-40 sm:h-48 overflow-hidden">
                       <img
                         src={game.image || "/placeholder.svg"}
                         alt={game.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-[#0A1A2F]/20 to-transparent" />
 
                       {/* Live indicator */}
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-red-500 text-white animate-pulse">
+                      <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+                        <Badge className="bg-red-500 text-white animate-pulse text-xs">
                           <div className="w-2 h-2 bg-white rounded-full mr-1" />
                           LIVE
                         </Badge>
                       </div>
 
                       {/* Language */}
-                      <div className="absolute top-3 right-3">
-                        <Badge className="bg-blue-500/80 text-white">{game.language}</Badge>
+                      <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
+                        <Badge className="bg-[#FFD700]/20 border border-[#FFD700]/50 text-[#FFD700] text-xs">
+                          {game.language}
+                        </Badge>
                       </div>
 
                       {/* Players count */}
-                      <div className="absolute top-12 right-3">
-                        <div className="flex items-center gap-1 bg-black/50 rounded-full px-2 py-1">
-                          <Users className="h-3 w-3 text-white" />
+                      <div className="absolute top-10 sm:top-12 right-2 sm:right-3">
+                        <div className="flex items-center gap-1 bg-[#0A1A2F]/80 rounded-full px-2 py-1">
+                          <Users className="h-3 w-3 text-[#FFD700]" />
                           <span className="text-white text-xs">{game.players}</span>
                         </div>
                       </div>
 
                       {/* Content */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-xl font-bold text-white mb-1">{game.title}</h3>
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
+                        <h3 className="text-base sm:text-xl font-bold text-white mb-1">{game.title}</h3>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-red-300 text-sm">Dealer: {game.dealer}</span>
-                          <span className="text-red-300 text-sm">{game.category}</span>
+                          <span className="text-[#F5F5F5]/70 text-xs sm:text-sm">Dealer: {game.dealer}</span>
+                          <span className="text-[#F5F5F5]/70 text-xs sm:text-sm">{game.category}</span>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-red-200">
+                        <div className="flex items-center justify-between text-xs text-[#F5F5F5]/60">
                           <span>Min: {game.minBet}</span>
                           <span>Max: {game.maxBet}</span>
                         </div>
                       </div>
 
                       {/* Play button overlay */}
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Button className="bg-yellow-500 text-black font-bold hover:bg-yellow-400">
+                      <div className="absolute inset-0 bg-[#FFD700]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Button className="bg-[#FFD700] text-[#0A1A2F] font-bold hover:bg-[#FFD700]/90">
                           <Play className="h-4 w-4 mr-2" />
                           Join Table
                         </Button>
@@ -249,15 +267,15 @@ export default function LiveCasinoPage() {
 
         {/* All Live Games */}
         <div>
-          <h2 className="text-xl font-bold mb-4 text-yellow-400 flex items-center gap-2">
+          <h2 className="text-lg sm:text-xl font-bold mb-4 text-[#FFD700] flex items-center gap-2">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             All Live Tables
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
             {filteredGames.map((game) => (
               <Card
                 key={game.id}
-                className="bg-red-800/50 border border-red-600/30 hover:border-yellow-500/50 transition-all duration-300 overflow-hidden group cursor-pointer"
+                className="bg-[#0A1A2F]/60 border border-[#FFD700]/20 hover:border-[#FFD700]/50 transition-all duration-300 overflow-hidden group cursor-pointer shadow-lg"
                 onClick={() => setSelectedGame(game)}
               >
                 <CardContent className="p-0 relative">
@@ -267,39 +285,38 @@ export default function LiveCasinoPage() {
                       alt={game.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-transparent to-transparent" />
 
                     {/* Live indicator */}
-                    <div className="absolute top-2 left-2">
+                    <div className="absolute top-1 sm:top-2 left-1 sm:left-2">
                       <Badge className="bg-red-500 text-white text-xs animate-pulse">LIVE</Badge>
                     </div>
 
                     {/* Players */}
-                    <div className="absolute top-2 right-2">
-                      <div className="flex items-center gap-1 bg-black/50 rounded px-1 py-0.5">
-                        <Users className="h-3 w-3 text-white" />
+                    <div className="absolute top-1 sm:top-2 right-1 sm:right-2">
+                      <div className="flex items-center gap-1 bg-[#0A1A2F]/80 rounded px-1 py-0.5">
+                        <Users className="h-3 w-3 text-[#FFD700]" />
                         <span className="text-white text-xs">{game.players}</span>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <h3 className="text-white font-bold text-sm mb-1 truncate">{game.title}</h3>
-                      <div className="flex items-center justify-between text-xs text-red-200 mb-1">
-                        <span>Dealer: {game.dealer}</span>
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+                      <h3 className="text-white font-bold text-xs sm:text-sm mb-1 truncate">{game.title}</h3>
+                      <div className="flex items-center justify-between text-xs text-[#F5F5F5]/70 mb-1">
+                        <span className="truncate">{game.dealer}</span>
                         <span>{game.language}</span>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-red-300">
-                        <span>
+                      <div className="flex items-center justify-between text-xs text-[#FFD700]">
+                        <span className="truncate">
                           {game.minBet} - {game.maxBet}
                         </span>
-                        <span>{game.category}</span>
                       </div>
                     </div>
 
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button size="sm" className="bg-yellow-500 text-black font-bold hover:bg-yellow-400">
+                    <div className="absolute inset-0 bg-[#FFD700]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Button size="sm" className="bg-[#FFD700] text-[#0A1A2F] font-bold hover:bg-[#FFD700]/90 text-xs">
                         Join
                       </Button>
                     </div>
@@ -313,38 +330,34 @@ export default function LiveCasinoPage() {
 
       {/* Game Modal */}
       {selectedGame && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-gradient-to-br from-red-900 to-orange-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-gradient-to-br from-[#0A1A2F] to-[#0A1A2F]/95 border border-[#FFD700]/30 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b border-red-600/30">
-              <div className="flex items-center gap-4">
-                <Badge className="bg-red-500 text-white animate-pulse">
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-[#FFD700]/20">
+              <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+                <Badge className="bg-red-500 text-white animate-pulse text-xs">
                   <div className="w-2 h-2 bg-white rounded-full mr-1" />
                   LIVE
                 </Badge>
-                <h3 className="text-xl font-bold text-white">{selectedGame.title}</h3>
-                <span className="text-red-300">Dealer: {selectedGame.dealer}</span>
+                <h3 className="text-base sm:text-xl font-bold text-white truncate">{selectedGame.title}</h3>
+                <span className="hidden sm:inline text-[#F5F5F5]/70 text-sm truncate">
+                  Dealer: {selectedGame.dealer}
+                </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsMuted(!isMuted)}
-                  className="text-red-200 hover:text-white"
+                  className="text-[#F5F5F5]/80 hover:text-[#FFD700] hover:bg-[#FFD700]/10"
                 >
                   {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-                </Button>
-                <Button variant="ghost" size="sm" className="text-red-200 hover:text-white">
-                  <Maximize className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-red-200 hover:text-white">
-                  <Settings className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setSelectedGame(null)}
-                  className="text-red-200 hover:text-white"
+                  className="text-[#F5F5F5]/80 hover:text-[#FFD700] hover:bg-[#FFD700]/10"
                 >
                   ✕
                 </Button>
@@ -359,28 +372,40 @@ export default function LiveCasinoPage() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <Button className="bg-yellow-500 text-black font-bold hover:bg-yellow-400 text-lg px-8 py-4">
-                  <Play className="h-6 w-6 mr-2" />
+                <Button className="bg-[#FFD700] text-[#0A1A2F] font-bold hover:bg-[#FFD700]/90 text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4">
+                  <Play className="h-4 w-4 sm:h-6 sm:w-6 mr-2" />
                   Start Playing
                 </Button>
               </div>
 
               {/* Game stats */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                <div className="flex items-center gap-4 text-white">
+              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2 sm:gap-4 text-white text-xs sm:text-sm">
                   <div className="flex items-center gap-1">
-                    <Users className="h-4 w-4" />
-                    <span>{selectedGame.players} players</span>
+                    <Users className="h-3 w-3 sm:h-4 sm:w-4" />
+                    <span>{selectedGame.players}</span>
                   </div>
                   <span>Min: {selectedGame.minBet}</span>
                   <span>Max: {selectedGame.maxBet}</span>
                 </div>
-                <Badge className="bg-blue-500/80 text-white">{selectedGame.language}</Badge>
+                <Badge className="bg-[#FFD700]/20 border border-[#FFD700]/50 text-[#FFD700] text-xs">
+                  {selectedGame.language}
+                </Badge>
               </div>
             </div>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   )
 }
