@@ -12,7 +12,7 @@ function BottomNavigation({ activeTab }) {
       if (pathname === "/dashboard" || pathname === "/") return "home"
       if (pathname.includes("/dashboard/casino") || pathname.includes("/casino")) return "casino"
       if (pathname.includes("/dashboard/shop") || pathname.includes("/shop")) return "shop"
-      if (pathname.includes("/dashboard/wallet") || pathname.includes("/wallet")) return "wallet"
+      // if (pathname.includes("/dashboard/wallet") || pathname.includes("/wallet")) return "wallet"
       if (pathname.includes("/dashboard/menu") || pathname.includes("/menu")) return "menu"
       return "home"
     })()
@@ -21,7 +21,7 @@ function BottomNavigation({ activeTab }) {
     { id: "home", icon: Home, label: "Sports", href: "/" },
     { id: "casino", icon: Gamepad2, label: "Casino", href: "/dashboard/casino" },
     { id: "shop", icon: ShoppingBag, label: "Shop", href: "/dashboard/shop" },
-    { id: "wallet", icon: Wallet, label: "Wallet", href: "/dashboard/wallet" },
+    // { id: "wallet", icon: Wallet, label: "Wallet", href: "/dashboard/wallet" },
     { id: "menu", icon: Menu, label: "Menu", href: "/dashboard/menu" },
   ]
 

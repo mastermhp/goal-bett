@@ -14,17 +14,20 @@ import {
   UserCircle,
   MenuIcon,
   X,
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
+import { BetSlip } from "@/components/dashboard/bet-slip";
 
 export default function DashboardCasinoPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Games");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [betSlipOpen, setBetSlipOpen] = useState(false);
 
   const categories = [
     { id: "All Games", name: "All Games", icon: null },
@@ -176,13 +179,18 @@ export default function DashboardCasinoPage() {
                   2
                 </span>
               </button>
+              <Link href="/dashboard/wallet" className="sm:inline">
+                <Wallet className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
+              </Link>
+
               <span className="hidden md:inline text-[#B8C5D6] text-sm">
                 Responsible Gambling
               </span>
               <span className="hidden sm:inline text-[#B8C5D6] text-sm">
                 Help
               </span>
-              <Link href="" className="hidden sm:inline">
+
+              <Link href="/auth/login" className="hidden sm:inline">
                 <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
 
@@ -451,6 +459,7 @@ export default function DashboardCasinoPage() {
       </div>
 
       <BottomNavigation activeTab="casino" />
+      <BetSlip isOpen={betSlipOpen} onClose={() => setBetSlipOpen(false)} />
 
       <style jsx>{`
         @keyframes marquee {

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { Logo } from "@/components/ui/logo"
 import { AnimatedButton } from "@/components/ui/animated-button"
-import { MonitorDot, Search, Trophy, MenuIcon, X, Receipt, LandPlot, UserCircle } from "lucide-react"
+import { MonitorDot, Search, Trophy, MenuIcon, X, Receipt, LandPlot, UserCircle, Wallet } from "lucide-react"
 import Link from "next/link"
 import BottomNavigation from "@/components/ui/bottom-navigation"
 import { BetSlip } from "@/components/dashboard/bet-slip"
@@ -111,13 +111,18 @@ export default function DashboardInPlayPage() {
                   2
                 </span>
               </button>
+              <Link href="/dashboard/wallet" className="sm:inline">
+                <Wallet className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
+              </Link>
+
               <span className="hidden md:inline text-[#B8C5D6] text-sm">
                 Responsible Gambling
               </span>
               <span className="hidden sm:inline text-[#B8C5D6] text-sm">
                 Help
               </span>
-              <Link href="" className="hidden sm:inline">
+
+              <Link href="/auth/login" className="hidden sm:inline">
                 <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
 

@@ -192,12 +192,12 @@ export function BetSlip({ isOpen, onClose }) {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-[#B8C5D6]">Total Stake</span>
-                      <span className="font-bold">Rs. {calculateTotalStake().toFixed(2)}</span>
+                      <span className="font-bold">$ {calculateTotalStake().toFixed(2)}</span>
                     </div>
                     <div className="h-px bg-[#2A3F55]" />
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Potential Win</span>
-                      <span className="font-bold text-green-400 text-lg">Rs. {calculatePotentialWin().toFixed(2)}</span>
+                      <span className="font-bold text-green-400 text-lg">$ {calculatePotentialWin().toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export function BetSlip({ isOpen, onClose }) {
                 className="w-full bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 font-bold py-4"
                 onClick={placeBet}
               >
-                Place Bet - Rs. {calculateTotalStake().toFixed(2)}
+                Place Bet - $ {calculateTotalStake().toFixed(2)}
               </AnimatedButton>
             </>
           )}
