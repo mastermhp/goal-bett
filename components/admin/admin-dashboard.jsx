@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import AdminSidebar from "./admin-sidebar"
 
 export function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -56,7 +57,8 @@ export function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5]">
       {/* Sidebar */}
-      <aside
+      <AdminSidebar />
+      {/* <aside
         className={`fixed left-0 top-0 bottom-0 z-50 bg-[#0D1F35]/95 backdrop-blur-sm border-r border-[#2A3F55] transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } w-64`}
@@ -93,7 +95,7 @@ export function AdminDashboard() {
             </button>
           </div>
         </div>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
       <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "ml-0"}`}>
@@ -101,13 +103,13 @@ export function AdminDashboard() {
         <header className="bg-[#0D1F35]/80 backdrop-blur-sm border-b border-[#2A3F55] sticky top-0 z-40">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-4">
-              <button
+              {/* <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="p-2 hover:bg-white/10 rounded-lg transition-colors"
               >
                 <Menu className="w-6 h-6" />
-              </button>
-              <div>
+              </button> */}
+              <div className="text-center ml-4">
                 <h1 className="text-xl font-bold">Dashboard</h1>
                 <p className="text-sm text-[#B8C5D6]">Welcome back, Admin</p>
               </div>

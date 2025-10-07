@@ -47,7 +47,7 @@ export function BetManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5] p-6">
         <AdminSidebar />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Bet Management</h1>
           <p className="text-muted-foreground">Monitor and manage all betting activity</p>

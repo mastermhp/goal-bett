@@ -46,10 +46,10 @@ export default function AgentWallet() {
       <div className="flex min-h-screen bg-[#0A1A2F]">
         <AgentSidebar />
 
-        <main className="flex-1 md:ml-64 p-4 md:p-6">
-          <div className="max-w-5xl mx-auto space-y-6">
+        <main className="flex-1 md:ml-64 p-6 sm:p-4 md:p-6 w-full min-w-0">
+          <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
             {/* Header */}
-            <div>
+            <div className="mt-8">
               <h1 className="text-3xl md:text-4xl font-bold text-[#FFD700]">Wallet Management</h1>
               <p className="text-[#F5F5F5] mt-2">Manage your funds directly via mobile - Anywhere, Anytime</p>
             </div>

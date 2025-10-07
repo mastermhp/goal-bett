@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
 import { AnimatedButton } from "@/components/ui/animated-button"
 import { Plus, Minus, CreditCard, Smartphone, Bitcoin, Phone, Banknote, WalletIcon } from "lucide-react"
+import { Logo } from "../ui/logo"
 
 export function Wallet() {
   const [balance] = useState(125679)
@@ -36,15 +37,15 @@ export function Wallet() {
   }
 
   return (
-    <div className="pb-20 px-6 pt-6">
+    <div className="pb-20 px-6 pt-1">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold">CASINO ROYAL</h1>
-          <p className="text-muted-foreground">Manage your wallet</p>
+        <div className="flex flex-col">
+          <Logo size="large" />
+          {/* <p className="text-muted-foreground">Manage your wallet</p> */}
         </div>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-sm font-bold">
+          <div className="w-10 h-10 bg-primary border-2 rounded-full flex items-center justify-center text-2xl font-bold">
             👨‍💼
           </div>
         </div>
@@ -108,7 +109,7 @@ export function Wallet() {
             >
               <Minus className="w-5 h-5" />
             </button>
-            <div className="text-3xl font-bold text-primary">Rs. {depositAmount}</div>
+            <div className="text-3xl font-bold text-secondary">$ {depositAmount}</div>
             <button
               onClick={() => adjustAmount(100)}
               className="w-12 h-12 bg-card/50 rounded-full flex items-center justify-center hover:bg-card transition-colors"

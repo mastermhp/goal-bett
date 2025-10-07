@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
 import { BrandedButton } from "@/components/ui/branded-button"
 import { Trophy, Gamepad2, Dices, Save, RotateCcw, Copy, Check } from "lucide-react"
+import { Logo } from "../ui/logo"
 
 export function ModuleSettings() {
   const [modules, setModules] = useState({
@@ -70,12 +71,12 @@ export function ModuleSettings() {
   ]
 
   return (
-    <div className="pb-20 px-4 sm:px-6 pt-6">
+    <div className="pb-20 px-4 sm:px-6 pt-2">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold">Settings</h1>
-          <p className="text-muted-foreground">Manage your account and preferences</p>
+          <Logo size="large" />
+          {/* <p className="text-muted-foreground">Manage your account and preferences</p> */}
         </div>
       </div>
 
@@ -226,7 +227,6 @@ export function ModuleSettings() {
           onClick={saveSettings}
         >
           <Save className="w-5 h-5" />
-          Save Settings
         </BrandedButton>
         <BrandedButton
           variant="secondary"
@@ -234,12 +234,11 @@ export function ModuleSettings() {
           onClick={resetSettings}
         >
           <RotateCcw className="w-5 h-5" />
-          Reset
         </BrandedButton>
       </div>
 
       {/* Info Card */}
-      <Card3D className="mt-8">
+      <Card3D className="my-8">
         <div className="glass p-6 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20">
           <h3 className="font-bold mb-2">About Settings</h3>
           <p className="text-sm text-muted-foreground">

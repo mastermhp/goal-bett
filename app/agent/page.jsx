@@ -23,7 +23,7 @@ export default function AgentDashboard() {
       <div className="flex min-h-screen bg-[#0A1A2F] overflow-x-hidden">
         <AgentSidebar />
 
-        <main className="flex-1 md:ml-64 p-3 sm:p-4 md:p-6 w-full min-w-0">
+        <main className="flex-1 md:ml-64 p-6 sm:p-4 md:p-6 w-full min-w-0">
           <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4">

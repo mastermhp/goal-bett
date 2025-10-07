@@ -1,16 +1,30 @@
-"use client"
-import { useState } from "react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Star, Zap, Crown, Gem, Trophy, Search, Filter } from "lucide-react"
-import Link from "next/link"
-import { Logo } from "@/components/ui/logo"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { BottomNavigation } from "@/components/ui/bottom-navigation"
+"use client";
+import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Star,
+  Zap,
+  Crown,
+  Gem,
+  Trophy,
+  Search,
+  Filter,
+  Receipt,
+  UserCircle,
+  MenuIcon,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import { BottomNavigation } from "@/components/ui/bottom-navigation";
 
 export default function DashboardCasinoPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [activeCategory, setActiveCategory] = useState("All Games")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All Games");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const categories = [
     { id: "All Games", name: "All Games", icon: null },
@@ -19,7 +33,7 @@ export default function DashboardCasinoPage() {
     { id: "Table Games", name: "Table Games", icon: "🃏" },
     { id: "Jackpots", name: "Jackpots", icon: "💎" },
     { id: "New", name: "New", icon: "⭐" },
-  ]
+  ];
 
   const featuredGames = [
     {
@@ -40,7 +54,7 @@ export default function DashboardCasinoPage() {
       featured: true,
       live: true,
     },
-  ]
+  ];
 
   const games = [
     {
@@ -111,87 +125,142 @@ export default function DashboardCasinoPage() {
       rtp: "96.8%",
       hot: true,
     },
-  ]
+  ];
 
   const filteredGames = games.filter((game) => {
-    const matchesSearch = game.title.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = activeCategory === "All Games" || game.category === activeCategory
-    return matchesSearch && matchesCategory
-  })
+    const matchesSearch = game.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      activeCategory === "All Games" || game.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0A1A2F]/95 to-[#0A1A2F]/90 text-white relative overflow-x-hidden">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A1A2F]/95 backdrop-blur-md border-b border-[#FFD700]/20 shadow-lg">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A1A2F]/95 backdrop-blur-sm border-b border-[#2A3F55]">
+        <div className="container mx-auto px-4">
           {/* Top Bar */}
-          <div className="flex items-center justify-between py-2 sm:py-3 border-b border-[#FFD700]/10">
-            <div className="flex items-center space-x-3 sm:space-x-6">
-              <Logo size="sm" />
-              <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm">
-                <Link href="/dashboard" className="text-[#F5F5F5]/80 hover:text-[#FFD700] transition-colors">
+          <div className="flex items-center justify-between py-2 border-b border-[#2A3F55]">
+            <div className="flex items-center space-x-2 md:space-x-6">
+              <Logo size="large" />
+              <nav className="hidden lg:flex items-center space-x-6 text-sm">
+                <Link
+                  href="/dashboard"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   Sports
                 </Link>
-                <Link href="/dashboard/in-play" className="text-[#F5F5F5]/80 hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard/in-play"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   In-Play
                 </Link>
                 <Link
                   href="/dashboard/casino"
-                  className="text-[#FFD700] font-semibold border-b-2 border-[#FFD700] pb-1"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
                 >
                   Casino
                 </Link>
               </nav>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline text-[#F5F5F5]/70 text-xs sm:text-sm">Help</span>
-              <Link href="/auth/signup">
-                <AnimatedButton
-                  variant=""
-                  className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 text-xs sm:text-sm px-3 sm:px-4"
-                  size="sm"
-                >
-                  Join
-                </AnimatedButton>
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <button
+                onClick={() => setBetSlipOpen(true)}
+                className="relative p-2 text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+              >
+                <Receipt className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#FFD700] text-[#0A1A2F] rounded-full text-xs font-bold flex items-center justify-center">
+                  2
+                </span>
+              </button>
+              <span className="hidden md:inline text-[#B8C5D6] text-sm">
+                Responsible Gambling
+              </span>
+              <span className="hidden sm:inline text-[#B8C5D6] text-sm">
+                Help
+              </span>
+              <Link href="" className="hidden sm:inline">
+                <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
-              <Link href="/auth/login">
-                <AnimatedButton
-                  variant="glass"
-                  className="text-white border-[#FFD700]/30 hover:border-[#FFD700] text-xs sm:text-sm px-3 sm:px-4"
-                  size="sm"
-                >
-                  Log In
-                </AnimatedButton>
-              </Link>
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 text-[#B8C5D6] hover:text-[#FFD700]"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <MenuIcon className="w-6 h-6" />
+                )}
+              </button>
             </div>
           </div>
 
-          {/* Search Bar */}
+          {/* Mobile Menu Dropdown */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden py-4 border-b border-[#2A3F55]">
+              <nav className="flex flex-col space-y-3">
+                <Link
+                  href="/dashboard"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sports
+                </Link>
+                <Link
+                  href="/dashboard/in-play"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  In-Play
+                </Link>
+                <Link
+                  href="/dashboard/casino"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Casino
+                </Link>
+                <div className="flex flex-col space-y-2 pt-2 sm:hidden">
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <AnimatedButton
+                      variant="glass"
+                      className="text-[#F5F5F5] border-[#2A3F55] flex items-center justify-center hover:border-[#FFD700] w-full"
+                      size="sm"
+                    >
+                      <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
+                    </AnimatedButton>
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          )}
+
+          {/* Main Navigation */}
           <div className="py-3">
-            <div className="flex items-center gap-2 sm:gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#B8C5D6]" />
-                <input
-                  type="text"
-                  placeholder="Search games..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-2 w-full bg-[#1A2F45] border border-[#2A3F55] rounded-lg text-[#F5F5F5] placeholder-[#B8C5D6] focus:outline-none focus:border-[#FFD700] text-sm"
-                />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-8"></div>
+              <div className="flex items-center space-x-4 flex-1 justify-end">
+                <div className="relative w-full max-w-xs md:max-w-md lg:max-w-lg">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#B8C5D6]" />
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="pl-10 pr-4 py-2 w-full bg-[#1A2F45] border border-[#2A3F55] rounded-lg text-[#F5F5F5] placeholder-[#B8C5D6] focus:outline-none focus:border-[#FFD700]"
+                  />
+                </div>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-[#FFD700]/30 text-[#FFD700] bg-transparent hover:bg-[#FFD700]/10"
-              >
-                <Filter className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Filter</span>
-              </Button>
             </div>
           </div>
         </div>
       </header>
-
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 pt-32 sm:pt-36 pb-20 sm:pb-24">
+      <div className="container mt-10 mx-auto px-3 sm:px-4 lg:px-6 pt-32 sm:pt-36 pb-20 sm:pb-24">
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
           {categories.map((category) => (
             <button
@@ -203,7 +272,9 @@ export default function DashboardCasinoPage() {
                   : "bg-[#0A1A2F]/50 border border-[#FFD700]/20 text-[#F5F5F5] hover:bg-[#FFD700]/10"
               }`}
             >
-              {category.icon && <span className="text-base">{category.icon}</span>}
+              {category.icon && (
+                <span className="text-base">{category.icon}</span>
+              )}
               {category.name}
             </button>
           ))}
@@ -252,18 +323,30 @@ export default function DashboardCasinoPage() {
 
                       {/* Content */}
                       <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                        <h3 className="text-base sm:text-xl font-bold text-white mb-2">{game.title}</h3>
+                        <h3 className="text-base sm:text-xl font-bold text-white mb-2">
+                          {game.title}
+                        </h3>
                         <div className="flex items-center justify-between">
-                          <span className="text-[#F5F5F5]/70 text-xs sm:text-sm">{game.category}</span>
+                          <span className="text-[#F5F5F5]/70 text-xs sm:text-sm">
+                            {game.category}
+                          </span>
                           {game.jackpot ? (
                             <div className="text-right">
-                              <div className="text-xs text-[#FFD700]">JACKPOT</div>
-                              <div className="text-sm sm:text-lg font-bold text-[#FFD700]">{game.jackpot}</div>
+                              <div className="text-xs text-[#FFD700]">
+                                JACKPOT
+                              </div>
+                              <div className="text-sm sm:text-lg font-bold text-[#FFD700]">
+                                {game.jackpot}
+                              </div>
                             </div>
                           ) : (
                             <div className="text-right">
-                              <div className="text-xs text-[#F5F5F5]/70">Players</div>
-                              <div className="text-xs sm:text-sm font-bold text-white">{game.players}</div>
+                              <div className="text-xs text-[#F5F5F5]/70">
+                                Players
+                              </div>
+                              <div className="text-xs sm:text-sm font-bold text-white">
+                                {game.players}
+                              </div>
                             </div>
                           )}
                         </div>
@@ -297,8 +380,16 @@ export default function DashboardCasinoPage() {
 
                       {/* Badges */}
                       <div className="absolute top-1 sm:top-2 left-1 sm:left-2 flex flex-col gap-1">
-                        {game.hot && <Badge className="bg-red-500 text-white text-xs animate-pulse">HOT</Badge>}
-                        {game.new && <Badge className="bg-green-500 text-white text-xs">NEW</Badge>}
+                        {game.hot && (
+                          <Badge className="bg-red-500 text-white text-xs animate-pulse">
+                            HOT
+                          </Badge>
+                        )}
+                        {game.new && (
+                          <Badge className="bg-green-500 text-white text-xs">
+                            NEW
+                          </Badge>
+                        )}
                       </div>
 
                       {/* RTP */}
@@ -310,9 +401,13 @@ export default function DashboardCasinoPage() {
 
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
-                        <h3 className="text-white font-bold text-xs sm:text-sm mb-1 truncate">{game.title}</h3>
+                        <h3 className="text-white font-bold text-xs sm:text-sm mb-1 truncate">
+                          {game.title}
+                        </h3>
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-[#F5F5F5]/70 truncate">{game.category}</span>
+                          <span className="text-[#F5F5F5]/70 truncate">
+                            {game.category}
+                          </span>
                           <span className="text-[#FFD700]">{game.players}</span>
                         </div>
                       </div>
@@ -335,15 +430,21 @@ export default function DashboardCasinoPage() {
           <div className="animate-marquee whitespace-nowrap flex items-center space-x-4 sm:space-x-8">
             <div className="flex items-center space-x-2">
               <Trophy className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="font-bold text-xs sm:text-sm">MEGA JACKPOT: $2,847,392</span>
+              <span className="font-bold text-xs sm:text-sm">
+                MEGA JACKPOT: $2,847,392
+              </span>
             </div>
             <div className="flex items-center space-x-2">
               <Crown className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="font-bold text-xs sm:text-sm">DAILY JACKPOT: $47,293</span>
+              <span className="font-bold text-xs sm:text-sm">
+                DAILY JACKPOT: $47,293
+              </span>
             </div>
             <div className="flex items-center space-x-2">
               <Gem className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="font-bold text-xs sm:text-sm">HOURLY JACKPOT: $3,847</span>
+              <span className="font-bold text-xs sm:text-sm">
+                HOURLY JACKPOT: $3,847
+              </span>
             </div>
           </div>
         </div>
@@ -372,5 +473,5 @@ export default function DashboardCasinoPage() {
         }
       `}</style>
     </div>
-  )
+  );
 }

@@ -1,42 +1,86 @@
-"use client"
-import { Card3D } from "@/components/ui/3d-card"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Trophy, Users, Settings, HelpCircle, LogOut, ChevronRight, Volume2 } from "lucide-react"
-import { useState } from "react"
+"use client";
+import { Card3D } from "@/components/ui/3d-card";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import {
+  Trophy,
+  Users,
+  Settings,
+  HelpCircle,
+  LogOut,
+  ChevronRight,
+  Volume2,
+} from "lucide-react";
+import { useState } from "react";
+import { Logo } from "../ui/logo";
+import Link from "next/link";
 
 export function UserMenu() {
-  const [audioEnabled, setAudioEnabled] = useState(true)
+  const [audioEnabled, setAudioEnabled] = useState(true);
   const [user] = useState({
     name: "CasinoKing92",
     level: "Level 3 Player",
     vipProgress: 60,
     balance: 125679,
-  })
+  });
 
   const menuItems = [
-    { icon: Trophy, label: "Missions", hasChevron: true },
-    { icon: Volume2, label: "Audio & Music", hasToggle: true, enabled: audioEnabled },
-    { icon: Users, label: "Leaderboard", hasChevron: true },
-    { icon: Users, label: "Friends", hasChevron: true },
-    { icon: Settings, label: "Settings", hasChevron: true },
-    { icon: HelpCircle, label: "Help & Support", hasChevron: true },
-  ]
+    {
+      icon: Trophy,
+      label: "Missions",
+      hasChevron: true,
+      href: "/dashboard/missions",
+    },
+    {
+      icon: Volume2,
+      label: "Audio & Music",
+      hasToggle: true,
+      enabled: audioEnabled,
+    },
+    {
+      icon: Users,
+      label: "Leaderboard",
+      hasChevron: true,
+      href: "/dashboard/leaderboard",
+    },
+    {
+      icon: Users,
+      label: "Friends",
+      hasChevron: true,
+      href: "/dashboard/friends",
+    },
+    {
+      icon: Settings,
+      label: "Settings",
+      hasChevron: true,
+      href: "/dashboard/settings",
+    },
+    {
+      icon: HelpCircle,
+      label: "Help & Support",
+      hasChevron: true,
+      href: "/dashboard/help",
+    },
+  ];
 
   return (
-    <div className="pb-20 px-6 pt-6">
+    <div className="pb-20 px-6 pt-2">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-xl font-bold">Menu</h1>
-        <button className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-          <Settings className="w-5 h-5" />
-        </button>
+        <Logo size="large" />
+        <Link href="/dashboard/settings">
+          <button className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+            <Settings className="w-5 h-5" />
+          </button>
+        </Link>
       </div>
 
       {/* User Profile Card */}
       <Card3D className="mb-8">
         <div className="glass p-6 rounded-2xl">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-2xl">👨‍💼</div>
+            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-3xl">
+              👨‍💼
+            </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold">{user.name}</h3>
               <p className="text-muted-foreground">{user.level}</p>
@@ -47,7 +91,9 @@ export function UserMenu() {
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">VIP Progress</span>
-              <span className="text-sm text-primary font-bold">{user.vipProgress}%</span>
+              <span className="text-sm text-secondary font-bold">
+                {user.vipProgress}%
+              </span>
             </div>
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div
@@ -60,7 +106,9 @@ export function UserMenu() {
           {/* Balance */}
           <div className="text-center">
             <p className="text-muted-foreground mb-1">Balance</p>
-            <div className="text-2xl font-bold gradient-text mb-4">${user.balance.toLocaleString()}</div>
+            <div className="text-2xl font-bold gradient-text mb-4">
+              ${user.balance.toLocaleString()}
+            </div>
             <AnimatedButton variant="primary" size="sm" className="w-full">
               Top Up
             </AnimatedButton>
@@ -78,17 +126,33 @@ export function UserMenu() {
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <span className="flex-1 text-left font-medium">{item.label}</span>
-                {item.hasChevron && <ChevronRight className="w-5 h-5 text-muted-foreground" />}
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="flex-1 text-left font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="flex-1 text-left font-medium">
+                    {item.label}
+                  </span>
+                )}
+
+                {item.hasChevron && (
+                  <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                )}
                 {item.hasToggle && (
                   <button
                     onClick={(e) => {
-                      e.stopPropagation()
+                      e.stopPropagation();
                       if (item.label === "Audio & Music") {
-                        setAudioEnabled(!audioEnabled)
+                        setAudioEnabled(!audioEnabled);
                       }
                     }}
-                    className={`w-12 h-6 rounded-full transition-colors ${item.enabled ? "bg-primary" : "bg-gray-600"}`}
+                    className={`w-12 h-6 rounded-full transition-colors ${
+                      item.enabled ? "bg-primary" : "bg-gray-600"
+                    }`}
                   >
                     <div
                       className={`w-5 h-5 bg-white rounded-full transition-transform ${
@@ -104,10 +168,10 @@ export function UserMenu() {
       </div>
 
       {/* Logout Button */}
-      <Card3D>
+      <Card3D className="mb-8">
         <button
           onClick={() => (window.location.href = "/")}
-          className="w-full glass p-4 rounded-xl flex items-center gap-4 hover:bg-red-500/10 transition-colors text-red-400"
+          className="w-full glass p-4 rounded-xl flex items-center gap-4 hover:bg-red-500/10 transition-colors text-red-400 "
         >
           <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
             <LogOut className="w-5 h-5" />
@@ -116,5 +180,5 @@ export function UserMenu() {
         </button>
       </Card3D>
     </div>
-  )
+  );
 }

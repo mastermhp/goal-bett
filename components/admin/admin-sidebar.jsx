@@ -1,7 +1,7 @@
-"use client"
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
@@ -15,9 +15,12 @@ import {
   Globe,
   Menu,
   X,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+  Receipt,
+  DollarSign,
+  Bell,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const adminMenuItems = [
   {
@@ -35,6 +38,9 @@ const adminMenuItems = [
     href: "/admin/agents",
     icon: UserCheck,
   },
+  { icon: Receipt, title: "Bet Management", href: "/admin/bets" },
+  { icon: DollarSign, title: "Transactions", href: "/admin/transactions" },
+  { icon: Bell, title: "Notifications", href: "/admin/notifications" },
   {
     title: "Game Control",
     href: "/admin/games",
@@ -70,11 +76,11 @@ const adminMenuItems = [
     href: "/admin/settings",
     icon: Settings,
   },
-]
+];
 
 export default function AdminSidebar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -82,7 +88,7 @@ export default function AdminSidebar() {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 md:hidden"
+        className="fixed top-4 left-4 z-50 md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors "
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -92,7 +98,7 @@ export default function AdminSidebar() {
       <div
         className={cn(
           "fixed inset-y-0 left-0 z-40 w-64 bg-card border-r border-border transform transition-transform duration-300 ease-in-out md:translate-x-0",
-          isOpen ? "translate-x-0" : "-translate-x-full",
+          isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="flex flex-col h-full">
@@ -104,8 +110,8 @@ export default function AdminSidebar() {
           {/* Navigation */}
           <nav className="flex-1 px-4 py-6 space-y-2">
             {adminMenuItems.map((item) => {
-              const Icon = item.icon
-              const isActive = pathname === item.href
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
 
               return (
                 <Link
@@ -115,14 +121,14 @@ export default function AdminSidebar() {
                     "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
                     isActive
                       ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                   )}
                   onClick={() => setIsOpen(false)}
                 >
                   <Icon className="mr-3 h-5 w-5" />
                   {item.title}
                 </Link>
-              )
+              );
             })}
           </nav>
 
@@ -130,7 +136,9 @@ export default function AdminSidebar() {
           <div className="p-4 border-t border-border">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-primary-foreground">A</span>
+                <span className="text-sm font-medium text-primary-foreground">
+                  A
+                </span>
               </div>
               <div>
                 <p className="text-sm font-medium">Admin User</p>
@@ -142,7 +150,12 @@ export default function AdminSidebar() {
       </div>
 
       {/* Overlay */}
-      {isOpen && <div className="fixed inset-0 z-30 bg-black/50 md:hidden" onClick={() => setIsOpen(false)} />}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/50 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </>
-  )
+  );
 }

@@ -94,7 +94,7 @@ export default function AgentManagement() {
     <div className="flex min-h-screen bg-[#0A1A2F] overflow-x-hidden">
       <AdminSidebar />
 
-      <main className="flex-1 md:ml-64 p-3 sm:p-4 md:p-6 w-full min-w-0">
+      <main className="flex-1 md:ml-64 p-5 sm:p-4 md:p-6 w-full min-w-0 mt-6">
         <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div>

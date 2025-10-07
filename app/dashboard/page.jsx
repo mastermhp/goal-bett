@@ -1,11 +1,23 @@
-"use client"
-import { useState, useEffect } from "react"
-import { Logo } from "@/components/ui/logo"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { LandPlot, MonitorDot, Search, Trophy, MenuIcon, X, Receipt } from "lucide-react"
-import Link from "next/link"
-import BottomNavigation from "@/components/ui/bottom-navigation"
-import { BetSlip } from "@/components/dashboard/bet-slip"
+"use client";
+import { useState, useEffect } from "react";
+import { Logo } from "@/components/ui/logo";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import {
+  LandPlot,
+  MonitorDot,
+  Search,
+  Trophy,
+  MenuIcon,
+  X,
+  Receipt,
+  User2Icon,
+  UserCheck,
+  UserX,
+  UserCircle,
+} from "lucide-react";
+import Link from "next/link";
+import BottomNavigation from "@/components/ui/bottom-navigation";
+import { BetSlip } from "@/components/dashboard/bet-slip";
 import {
   AnimatedCricketIcon,
   AnimatedSoccerIcon,
@@ -18,20 +30,21 @@ import {
   AnimatedBoxingIcon,
   AnimatedGolfIcon,
   AnimatedFormula1Icon,
-} from "@/components/ui/animated-sport-icons"
+} from "@/components/ui/animated-sport-icons";
+import { Avatar } from "@/components/ui/avatar";
 
 export default function HomePage() {
-  const [mounted, setMounted] = useState(false)
-  const [selectedSport, setSelectedSport] = useState("soccer")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
-  const [betSlipOpen, setBetSlipOpen] = useState(false)
+  const [mounted, setMounted] = useState(false);
+  const [selectedSport, setSelectedSport] = useState("soccer");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [betSlipOpen, setBetSlipOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   const featuredMatches = [
     {
@@ -112,7 +125,7 @@ export default function HomePage() {
       },
       time: "Sat 27 Sep",
     },
-  ]
+  ];
 
   const liveMatches = [
     {
@@ -151,7 +164,7 @@ export default function HomePage() {
       odds: [],
       time: "",
     },
-  ]
+  ];
 
   const sportsCategories = [
     { id: "american-football", name: "American Football", icon: "🏈" },
@@ -171,7 +184,7 @@ export default function HomePage() {
     { id: "futsal", name: "Futsal", icon: "⚽" },
     { id: "gaelic-sports", name: "Gaelic Sports", icon: "🥍" },
     { id: "golf", name: "Golf", icon: "⛳" },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5] relative overflow-hidden">
@@ -181,15 +194,24 @@ export default function HomePage() {
           {/* Top Bar */}
           <div className="flex items-center justify-between py-2 border-b border-[#2A3F55]">
             <div className="flex items-center space-x-2 md:space-x-6">
-              <Logo size="sm" />
+              <Logo size="large" />
               <nav className="hidden lg:flex items-center space-x-6 text-sm">
-                <Link href="/" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   Sports
                 </Link>
-                <Link href="/in-play" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard/in-play"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   In-Play
                 </Link>
-                <Link href="/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard/casino"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   Casino
                 </Link>
               </nav>
@@ -204,27 +226,25 @@ export default function HomePage() {
                   2
                 </span>
               </button>
-              <span className="hidden md:inline text-[#B8C5D6] text-sm">Responsible Gambling</span>
-              <span className="hidden sm:inline text-[#B8C5D6] text-sm">Help</span>
-              <Link href="/auth/signup" className="hidden sm:inline">
-                <AnimatedButton variant="" className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90" size="sm">
-                  Join
-                </AnimatedButton>
+              <span className="hidden md:inline text-[#B8C5D6] text-sm">
+                Responsible Gambling
+              </span>
+              <span className="hidden sm:inline text-[#B8C5D6] text-sm">
+                Help
+              </span>
+              <Link href="" className="hidden sm:inline">
+                <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
-              <Link href="/auth/login" className="hidden sm:inline">
-                <AnimatedButton
-                  variant="glass"
-                  className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700]"
-                  size="sm"
-                >
-                  Log In
-                </AnimatedButton>
-              </Link>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 text-[#B8C5D6] hover:text-[#FFD700]"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <MenuIcon className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -234,43 +254,37 @@ export default function HomePage() {
             <div className="lg:hidden py-4 border-b border-[#2A3F55]">
               <nav className="flex flex-col space-y-3">
                 <Link
-                  href="/"
+                  href="/dashboard"
                   className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Sports
                 </Link>
                 <Link
-                  href="/in-play"
+                  href="/dashboard/in-play"
                   className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   In-Play
                 </Link>
                 <Link
-                  href="/casino"
+                  href="/dashboard/casino"
                   className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Casino
                 </Link>
                 <div className="flex flex-col space-y-2 pt-2 sm:hidden">
-                  <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
-                    <AnimatedButton
-                      variant=""
-                      className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 w-full"
-                      size="sm"
-                    >
-                      Join
-                    </AnimatedButton>
-                  </Link>
-                  <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     <AnimatedButton
                       variant="glass"
-                      className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700] w-full"
+                      className="text-[#F5F5F5] border-[#2A3F55] flex items-center justify-center hover:border-[#FFD700] w-full"
                       size="sm"
                     >
-                      Log In
+                      <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
                     </AnimatedButton>
                   </Link>
                 </div>
@@ -297,13 +311,21 @@ export default function HomePage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-2 md:px-4 py-6 pt-32 md:pt-40 pb-24">
+      <div className="container mt-10 mx-auto px-2 md:px-4 py-6 pt-32 md:pt-40 pb-24">
         <div className="flex gap-2 md:gap-6">
           {/* Left Sidebar */}
           <div
-            className={`${mobileSidebarOpen ? "fixed inset-0 z-40 bg-[#0A1A2F]/95 backdrop-blur-sm" : "hidden"} lg:block lg:w-64 lg:flex-shrink-0 lg:static`}
+            className={`${
+              mobileSidebarOpen
+                ? "fixed inset-0 z-40 bg-[#0A1A2F]/95 backdrop-blur-sm"
+                : "hidden"
+            } lg:block lg:w-64 lg:flex-shrink-0 lg:static`}
           >
-            <div className={`${mobileSidebarOpen ? "w-64 h-full overflow-y-auto" : ""} lg:w-full`}>
+            <div
+              className={`${
+                mobileSidebarOpen ? "w-64 h-full overflow-y-auto" : ""
+              } lg:w-full`}
+            >
               {mobileSidebarOpen && (
                 <button
                   onClick={() => setMobileSidebarOpen(false)}
@@ -328,10 +350,14 @@ export default function HomePage() {
                     <button
                       key={sport.id}
                       onClick={() => {
-                        setSelectedSport(sport.id)
-                        setMobileSidebarOpen(false)
+                        setSelectedSport(sport.id);
+                        setMobileSidebarOpen(false);
                       }}
-                      className={`w-full flex items-center space-x-2 p-2 rounded text-left transition-colors ${selectedSport === sport.id ? "bg-[#FFD700] text-[#0A1A2F]" : "text-[#B8C5D6] hover:bg-[#1A2F45] hover:text-[#F5F5F5]"}`}
+                      className={`w-full flex items-center space-x-2 p-2 rounded text-left transition-colors ${
+                        selectedSport === sport.id
+                          ? "bg-[#FFD700] text-[#0A1A2F]"
+                          : "text-[#B8C5D6] hover:bg-[#1A2F45] hover:text-[#F5F5F5]"
+                      }`}
                     >
                       <span className="text-sm">{sport.icon}</span>
                       <span className="text-sm">{sport.name}</span>
@@ -354,23 +380,61 @@ export default function HomePage() {
             <div className="bg-[#0D1F35]/80 backdrop-blur-sm border border-[#2A3F55] rounded-xl p-3 md:p-4 shadow-xl mb-4 md:mb-6">
               <div className="flex items-center justify-start md:justify-center space-x-4 md:space-x-8 overflow-x-auto pb-2 scrollbar-hide">
                 {[
-                  { name: "Cricket", icon: <AnimatedCricketIcon className="h-10 md:h-14" /> },
-                  { name: "Soccer", icon: <AnimatedSoccerIcon className="h-10 md:h-14" /> },
-                  { name: "Casino", icon: <AnimatedCasinoIcon className="h-8 md:h-12" /> },
-                  { name: "Basketball", icon: <AnimatedBasketballIcon className="h-8 md:h-12" /> },
-                  { name: "Horses", icon: <AnimatedHorsesIcon className="h-8 md:h-12" /> },
-                  { name: "Esports", icon: <AnimatedEsportsIcon className="h-8 md:h-12" /> },
-                  { name: "Tennis", icon: <AnimatedTennisIcon className="h-8 md:h-12" /> },
-                  { name: "Virtual", icon: <AnimatedVirtualIcon className="h-8 md:h-12" /> },
-                  { name: "Boxing", icon: <AnimatedBoxingIcon className="h-8 md:h-12" /> },
-                  { name: "Golf", icon: <AnimatedGolfIcon className="h-8 md:h-12" /> },
-                  { name: "Formula 1", icon: <AnimatedFormula1Icon className="h-8 md:h-12" /> },
+                  {
+                    name: "Cricket",
+                    icon: <AnimatedCricketIcon className="h-10 md:h-14" />,
+                  },
+                  {
+                    name: "Soccer",
+                    icon: <AnimatedSoccerIcon className="h-10 md:h-14" />,
+                  },
+                  {
+                    name: "Casino",
+                    icon: <AnimatedCasinoIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Basketball",
+                    icon: <AnimatedBasketballIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Horses",
+                    icon: <AnimatedHorsesIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Esports",
+                    icon: <AnimatedEsportsIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Tennis",
+                    icon: <AnimatedTennisIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Virtual",
+                    icon: <AnimatedVirtualIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Boxing",
+                    icon: <AnimatedBoxingIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Golf",
+                    icon: <AnimatedGolfIcon className="h-8 md:h-12" />,
+                  },
+                  {
+                    name: "Formula 1",
+                    icon: <AnimatedFormula1Icon className="h-8 md:h-12" />,
+                  },
                 ].map((sport, index) => (
-                  <div key={index} className="flex flex-col items-center space-y-1 min-w-0 flex-shrink-0">
+                  <div
+                    key={index}
+                    className="flex flex-col items-center space-y-1 min-w-0 flex-shrink-0"
+                  >
                     <div className="w-16 h-14 md:w-20 md:h-18 bg-[#1A2F45] rounded-lg border border-[#2A3F55] p-2 md:p-4 shadow-xl flex items-center justify-center text-xl hover:bg-[#FFD700]/20 hover:border-[#FFD700] transition-colors cursor-pointer">
                       {sport.icon}
                     </div>
-                    <span className="text-xs text-[#B8C5D6] text-center whitespace-nowrap">{sport.name}</span>
+                    <span className="text-xs text-[#B8C5D6] text-center whitespace-nowrap">
+                      {sport.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -380,7 +444,9 @@ export default function HomePage() {
                 <button className="text-[#F5F5F5] font-semibold border-b-2 border-[#FFD700] pb-2 whitespace-nowrap">
                   Soccer
                 </button>
-                <button className="text-[#B8C5D6] hover:text-[#F5F5F5] transition-colors whitespace-nowrap">ATP</button>
+                <button className="text-[#B8C5D6] hover:text-[#F5F5F5] transition-colors whitespace-nowrap">
+                  ATP
+                </button>
                 <button className="text-[#B8C5D6] hover:text-[#F5F5F5] transition-colors whitespace-nowrap">
                   WTA Beijing
                 </button>
@@ -405,7 +471,9 @@ export default function HomePage() {
                   <span className="hidden sm:inline">FEATURED MATCHES</span>
                   <span className="sm:hidden">FEATURED</span>
                 </h2>
-                <button className="text-[#B8C5D6] hover:text-[#FFD700] text-xs md:text-sm">View All</button>
+                <button className="text-[#B8C5D6] hover:text-[#FFD700] text-xs md:text-sm">
+                  View All
+                </button>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                 {featuredMatches.map((match) => (
@@ -418,11 +486,15 @@ export default function HomePage() {
                         <span className="bg-[#FFD700] text-[#0A1A2F] text-xs px-2 py-1 rounded font-semibold">
                           {match.betBoost}
                         </span>
-                        <span className="text-[#FFD700] text-xs">🔥 {match.placed}</span>
+                        <span className="text-[#FFD700] text-xs">
+                          🔥 {match.placed}
+                        </span>
                       </div>
                     </div>
                     <div className="mb-3">
-                      <h3 className="text-[#F5F5F5] font-semibold text-sm mb-1">{match.teams}</h3>
+                      <h3 className="text-[#F5F5F5] font-semibold text-sm mb-1">
+                        {match.teams}
+                      </h3>
                       <div className="flex items-center space-x-2">
                         <span className="text-xs text-[#B8C5D6]">👕</span>
                         <span className="text-xs text-[#B8C5D6]">👕</span>
@@ -430,18 +502,29 @@ export default function HomePage() {
                     </div>
                     <div className="space-y-1 mb-4">
                       {match.markets.slice(0, 2).map((market, index) => (
-                        <div key={index} className="text-xs text-[#B8C5D6] truncate">
+                        <div
+                          key={index}
+                          className="text-xs text-[#B8C5D6] truncate"
+                        >
                           • {market.type}
                         </div>
                       ))}
-                      <button className="text-[#FFD700] text-xs hover:text-[#FFD700]/80">View more legs</button>
+                      <button className="text-[#FFD700] text-xs hover:text-[#FFD700]/80">
+                        View more legs
+                      </button>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center space-x-2 mb-1">
-                        <span className="text-[#B8C5D6] text-sm line-through">{match.mainOdds.was}</span>
-                        <span className="text-[#F5F5F5] text-xl font-bold">▶ {match.mainOdds.now}</span>
+                        <span className="text-[#B8C5D6] text-sm line-through">
+                          {match.mainOdds.was}
+                        </span>
+                        <span className="text-[#F5F5F5] text-xl font-bold">
+                          ▶ {match.mainOdds.now}
+                        </span>
                       </div>
-                      <div className="text-xs text-[#B8C5D6] mb-3 hidden sm:block">{match.mainOdds.returns}</div>
+                      <div className="text-xs text-[#B8C5D6] mb-3 hidden sm:block">
+                        {match.mainOdds.returns}
+                      </div>
                       <div className="text-xs text-[#B8C5D6]">{match.time}</div>
                     </div>
                   </div>
@@ -457,7 +540,9 @@ export default function HomePage() {
                   {match.team2 ? (
                     <div className="grid grid-cols-12 gap-2 md:gap-4 items-center">
                       <div className="col-span-2 md:col-span-1 text-center">
-                        <div className="text-xs text-[#B8C5D6]">{match.time}</div>
+                        <div className="text-xs text-[#B8C5D6]">
+                          {match.time}
+                        </div>
                         <div className="text-xs text-[#FFD700] flex justify-center">
                           <MonitorDot className="w-4 h-4 md:w-4 md:h-4" />
                         </div>
@@ -467,16 +552,24 @@ export default function HomePage() {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-1 md:space-x-2">
                               <Trophy className="w-3 h-3 md:w-4 md:h-4 text-[#FFD700]" />
-                              <span className="text-[#F5F5F5] text-xs md:text-sm truncate">{match.team1}</span>
+                              <span className="text-[#F5F5F5] text-xs md:text-sm truncate">
+                                {match.team1}
+                              </span>
                             </div>
-                            <span className="text-[#F5F5F5] font-bold text-sm md:text-base ml-2">{match.score1}</span>
+                            <span className="text-[#F5F5F5] font-bold text-sm md:text-base ml-2">
+                              {match.score1}
+                            </span>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-1 md:space-x-2">
                               <LandPlot className="w-3 h-3 md:w-4 md:h-4 text-[#B8C5D6]" />
-                              <span className="text-[#F5F5F5] text-xs md:text-sm truncate">{match.team2}</span>
+                              <span className="text-[#F5F5F5] text-xs md:text-sm truncate">
+                                {match.team2}
+                              </span>
                             </div>
-                            <span className="text-[#F5F5F5] font-bold text-sm md:text-base ml-2">{match.score2}</span>
+                            <span className="text-[#F5F5F5] font-bold text-sm md:text-base ml-2">
+                              {match.score2}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -495,7 +588,9 @@ export default function HomePage() {
                     </div>
                   ) : (
                     <div className="text-center py-4">
-                      <span className="text-[#F5F5F5] text-sm md:text-base">{match.team1}</span>
+                      <span className="text-[#F5F5F5] text-sm md:text-base">
+                        {match.team1}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -517,5 +612,5 @@ export default function HomePage() {
         }
       `}</style>
     </div>
-  )
+  );
 }

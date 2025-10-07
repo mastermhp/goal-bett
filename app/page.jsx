@@ -180,7 +180,7 @@ export default function HomePage() {
           {/* Top Bar */}
           <div className="flex items-center justify-between py-2 border-b border-[#2A3F55]">
             <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6">
-              <Logo size="sm" />
+              <Logo size="large" />
               <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-sm">
                 <Link href="/" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   Sports
@@ -188,7 +188,7 @@ export default function HomePage() {
                 <Link href="/in-play" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   In-Play
                 </Link>
-                <Link href="/dashboard/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link href="/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   Casino
                 </Link>
               </nav>
@@ -274,7 +274,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <div className="w-full mx-auto px-2 sm:px-4 lg:px-6 py-6 pt-32 sm:pt-36 md:pt-40 pb-24">
+      <div className="w-full mt-12 mx-auto px-2 sm:px-4 lg:px-6 py-6 pt-32 sm:pt-36 md:pt-44 pb-24">
         <div className="flex flex-col lg:flex-row gap-3 md:gap-6">
           {/* Left Sidebar */}
           <div

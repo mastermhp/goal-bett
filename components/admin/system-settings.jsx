@@ -1,8 +1,9 @@
-"use client"
-import { useState } from "react"
-import { Card3D } from "@/components/ui/3d-card"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Save, RotateCcw, Globe, DollarSign, Percent } from "lucide-react"
+"use client";
+import { useState } from "react";
+import { Card3D } from "@/components/ui/3d-card";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import { Save, RotateCcw, Globe, DollarSign, Percent } from "lucide-react";
+import AdminSidebar from "./admin-sidebar";
 
 export function SystemSettings() {
   const [settings, setSettings] = useState({
@@ -12,14 +13,14 @@ export function SystemSettings() {
     maxBet: "10000",
     commission: "5",
     timezone: "UTC",
-  })
+  });
 
-  const [saved, setSaved] = useState(false)
+  const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
-    setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
-  }
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
 
   const handleReset = () => {
     setSettings({
@@ -29,15 +30,19 @@ export function SystemSettings() {
       maxBet: "10000",
       commission: "5",
       timezone: "UTC",
-    })
-  }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5] p-6">
-      <div className="max-w-4xl mx-auto">
+      {/* Sidebar */}
+      <AdminSidebar />
+      <div className="max-w-4xl mx-auto mt-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">System Settings</h1>
-          <p className="text-muted-foreground">Configure your betting platform</p>
+          <p className="text-muted-foreground">
+            Configure your betting platform
+          </p>
         </div>
 
         {saved && (
@@ -55,19 +60,27 @@ export function SystemSettings() {
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Site Name</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Site Name
+                  </label>
                   <input
                     type="text"
                     value={settings.siteName}
-                    onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, siteName: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Currency</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Currency
+                  </label>
                   <select
                     value={settings.currency}
-                    onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, currency: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                   >
                     <option value="USD">USD - US Dollar</option>
@@ -77,10 +90,14 @@ export function SystemSettings() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Timezone</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Timezone
+                  </label>
                   <select
                     value={settings.timezone}
-                    onChange={(e) => setSettings({ ...settings, timezone: e.target.value })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, timezone: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                   >
                     <option value="UTC">UTC</option>
@@ -101,20 +118,28 @@ export function SystemSettings() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Minimum Bet</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Minimum Bet
+                  </label>
                   <input
                     type="number"
                     value={settings.minBet}
-                    onChange={(e) => setSettings({ ...settings, minBet: e.target.value })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, minBet: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Maximum Bet</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Maximum Bet
+                  </label>
                   <input
                     type="number"
                     value={settings.maxBet}
-                    onChange={(e) => setSettings({ ...settings, maxBet: e.target.value })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, maxBet: e.target.value })
+                    }
                     className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                   />
                 </div>
@@ -129,11 +154,15 @@ export function SystemSettings() {
                 Commission Settings
               </h3>
               <div>
-                <label className="block text-sm font-medium mb-2">Commission Rate (%)</label>
+                <label className="block text-sm font-medium mb-2">
+                  Commission Rate (%)
+                </label>
                 <input
                   type="number"
                   value={settings.commission}
-                  onChange={(e) => setSettings({ ...settings, commission: e.target.value })}
+                  onChange={(e) =>
+                    setSettings({ ...settings, commission: e.target.value })
+                  }
                   className="w-full px-4 py-3 bg-[#1A2F45] border border-[#2A3F55] rounded-xl text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
                 />
               </div>
@@ -143,23 +172,27 @@ export function SystemSettings() {
           <div className="flex gap-4">
             <AnimatedButton
               variant="primary"
-              className="flex-1 flex items-center justify-center gap-2 bg-[#FFD700] text-[#0A1A2F]"
+              className="flex-1 flex  bg-[#FFD700] text-[#0A1A2F]"
               onClick={handleSave}
             >
-              <Save className="w-5 h-5" />
-              Save Settings
+              <div className="flex items-center justify-center gap-2">
+                <Save className="w-5 h-5" />
+                Save Settings
+              </div>
             </AnimatedButton>
             <AnimatedButton
               variant="glass"
               className="flex items-center justify-center gap-2 px-6"
               onClick={handleReset}
             >
-              <RotateCcw className="w-5 h-5" />
-              Reset
+              <div className="flex items-center justify-center gap-2">
+                <RotateCcw className="w-5 h-5" />
+                Reset
+              </div>
             </AnimatedButton>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

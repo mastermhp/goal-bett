@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { Logo } from "@/components/ui/logo"
 import { AnimatedButton } from "@/components/ui/animated-button"
-import { MonitorDot, Search, Trophy, MenuIcon, X, Receipt, LandPlot } from "lucide-react"
+import { MonitorDot, Search, Trophy, MenuIcon, X, Receipt, LandPlot, UserCircle } from "lucide-react"
 import Link from "next/link"
 import BottomNavigation from "@/components/ui/bottom-navigation"
 import { BetSlip } from "@/components/dashboard/bet-slip"
@@ -79,15 +79,24 @@ export default function DashboardInPlayPage() {
           {/* Top Bar */}
           <div className="flex items-center justify-between py-2 border-b border-[#2A3F55]">
             <div className="flex items-center space-x-2 md:space-x-6">
-              <Logo size="sm" />
+              <Logo size="large" />
               <nav className="hidden lg:flex items-center space-x-6 text-sm">
-                <Link href="/dashboard" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   Sports
                 </Link>
-                <Link href="/dashboard/in-play" className="text-[#FFD700] font-semibold border-b-2 border-[#FFD700]">
+                <Link
+                  href="/dashboard/in-play"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   In-Play
                 </Link>
-                <Link href="/dashboard/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
+                <Link
+                  href="/dashboard/casino"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
+                >
                   Casino
                 </Link>
               </nav>
@@ -102,27 +111,25 @@ export default function DashboardInPlayPage() {
                   2
                 </span>
               </button>
-              <span className="hidden md:inline text-[#B8C5D6] text-sm">Responsible Gambling</span>
-              <span className="hidden sm:inline text-[#B8C5D6] text-sm">Help</span>
-              <Link href="/auth/signup" className="hidden sm:inline">
-                <AnimatedButton variant="" className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90" size="sm">
-                  Join
-                </AnimatedButton>
+              <span className="hidden md:inline text-[#B8C5D6] text-sm">
+                Responsible Gambling
+              </span>
+              <span className="hidden sm:inline text-[#B8C5D6] text-sm">
+                Help
+              </span>
+              <Link href="" className="hidden sm:inline">
+                <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
-              <Link href="/auth/login" className="hidden sm:inline">
-                <AnimatedButton
-                  variant="glass"
-                  className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700]"
-                  size="sm"
-                >
-                  Log In
-                </AnimatedButton>
-              </Link>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 text-[#B8C5D6] hover:text-[#FFD700]"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <MenuIcon className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -140,7 +147,7 @@ export default function DashboardInPlayPage() {
                 </Link>
                 <Link
                   href="/dashboard/in-play"
-                  className="text-[#FFD700] font-semibold px-2 py-1"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   In-Play
@@ -153,22 +160,16 @@ export default function DashboardInPlayPage() {
                   Casino
                 </Link>
                 <div className="flex flex-col space-y-2 pt-2 sm:hidden">
-                  <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
-                    <AnimatedButton
-                      variant=""
-                      className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 w-full"
-                      size="sm"
-                    >
-                      Join
-                    </AnimatedButton>
-                  </Link>
-                  <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     <AnimatedButton
                       variant="glass"
-                      className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700] w-full"
+                      className="text-[#F5F5F5] border-[#2A3F55] flex items-center justify-center hover:border-[#FFD700] w-full"
                       size="sm"
                     >
-                      Log In
+                      <UserCircle className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
                     </AnimatedButton>
                   </Link>
                 </div>
@@ -195,7 +196,7 @@ export default function DashboardInPlayPage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-2 md:px-4 py-6 pt-32 md:pt-40 pb-24">
+      <div className="container mt-10 mx-auto px-2 md:px-4 py-6 pt-32 md:pt-40 pb-24">
         <div className="mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-2 flex items-center gap-2">
             <MonitorDot className="w-6 h-6 md:w-8 md:h-8" />

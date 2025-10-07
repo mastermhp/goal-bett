@@ -84,7 +84,7 @@ export default function LoginPage() {
       >
         <div className="space-y-6">
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 text-sm">
-            <p className="font-medium text-primary mb-2">Demo Credentials:</p>
+            <p className="font-medium text-secondary mb-2">Demo Credentials:</p>
             <div className="space-y-1 text-gray-300">
               <p>Player: player@demo.com</p>
               <p>Agent: agent@demo.com</p>

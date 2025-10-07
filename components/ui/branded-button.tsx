@@ -49,7 +49,7 @@ function BrandedButton({
   return (
     <Comp className={cn(brandedButtonVariants({ variant, size, className }))} {...props}>
       {showLogo && (
-        <Image src="/images/goal-betting-logo.png" alt="" width={24} height={24} className="w-5 h-5 animate-pulse" />
+        <Image src="/images/goal-betting-logo.png" alt="" width={24} height={24} className="w-11 h-11 animate-pulse" />
       )}
       <span className="relative z-10">{children}</span>
       <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
 import { AnimatedButton } from "@/components/ui/animated-button"
 import { Search, Filter, MoreVertical, Mail, Phone } from "lucide-react"
+import AdminSidebar from "./admin-sidebar"
 
 export function UserManagement() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -39,7 +40,9 @@ export function UserManagement() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5] p-6">
-      <div className="max-w-7xl mx-auto">
+      {/* Sidebar */}
+            <AdminSidebar />
+      <div className="max-w-7xl mx-auto mt-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">User Management</h1>
           <p className="text-muted-foreground">Manage and monitor all users</p>

@@ -17,12 +17,12 @@ export function AuthLayout({ children, title, subtitle, showBack = false, onBack
               className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
-              <span>Back</span>
+              {/* <span>Back</span> */}
             </button>
           ) : (
             <div />
           )}
-          <Logo size="small" />
+          <Logo size="large" />
           <div className="w-16" />
         </div>
 

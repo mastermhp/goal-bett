@@ -6,8 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CreditCard, Send, CheckCircle, History } from "lucide-react"
+import { CreditCard, Send, CheckCircle, History, ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 export default function SellCredits() {
   const [customerPhone, setCustomerPhone] = useState("")
@@ -58,12 +59,24 @@ export default function SellCredits() {
       <div className="flex min-h-screen bg-[#0A1A2F]">
         <AgentSidebar />
 
-        <main className="flex-1 md:ml-64 p-4 md:p-6">
-          <div className="max-w-5xl mx-auto space-y-6">
+        <main className="flex-1 md:ml-64 p-6 sm:p-4 md:p-6 w-full min-w-0">
+          <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
             {/* Header */}
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-[#FFD700]">Sell Credits</h1>
-              <p className="text-[#F5F5F5] mt-2">Distribute credits digitally to customers - No tickets required</p>
+            <div className="flex items-center justify-between mt-6">
+              <div>
+                <h1 className="text-xl md:text-4xl font-bold text-[#FFD700]">Sell Credits</h1>
+                <p className="text-[#F5F5F5] text-xs mt-2">Distribute credits digitally to customers - No tickets required</p>
+              </div>
+              {/* Request More Credits button */}
+              <Link href="/agent/request-credits">
+                <Button
+                  variant="outline"
+                  className="border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700]/10 bg-transparent"
+                >
+                  <ArrowUpRight className="mr-2 h-4 w-4" />
+                  Request More Credits
+                </Button>
+              </Link>
             </div>
 
             {/* Available Credits */}
@@ -200,8 +213,9 @@ export default function SellCredits() {
                   {recentTransactions.map((txn) => (
                     <div
                       key={txn.id}
-                      className="flex items-center justify-between p-4 bg-[#0A1A2F]/50 rounded-lg border border-[#FFD700]/20"
+                      className="relative flex items-center justify-between p-4 bg-[#0A1A2F]/50 rounded-lg border-4 border-[#FFD700]/20"
                     >
+                      <Badge className="absolute -top-3 right-3 bg-green-500 text-white">{txn.status}</Badge>
                       <div>
                         <p className="text-white font-medium">{txn.phone}</p>
                         <p className="text-sm text-[#F5F5F5]">
@@ -212,7 +226,7 @@ export default function SellCredits() {
                         <p className="text-white font-bold">{txn.amount}</p>
                         <p className="text-sm text-green-400">+{txn.commission} commission</p>
                       </div>
-                      <Badge className="bg-green-500 text-white">{txn.status}</Badge>
+                      
                     </div>
                   ))}
                 </div>

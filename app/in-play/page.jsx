@@ -1,9 +1,14 @@
-import { AnimatedButton } from "@/components/ui/animated-button"
+"use client"
+import { BrandedButton } from "@/components/ui/branded-button"
 import { Logo } from "@/components/ui/logo"
-import { Search } from "lucide-react"
+import { LandPlot, MonitorDot, Search, Trophy, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function inplay() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+
   const matches = Array.from({ length: 8 }).map((_, i) => ({
     id: i,
     league: [
@@ -23,57 +28,98 @@ export default function inplay() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0A1A2F]/95 to-[#0A1A2F]/90 text-white relative overflow-x-hidden">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A1A2F]/95 backdrop-blur-md border-b border-[#FFD700]/20 shadow-lg">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A1A2F]/95 backdrop-blur-sm border-b border-[#2A3F55]">
+        <div className="w-full mx-auto px-3 sm:px-4 lg:px-6">
           {/* Top Bar */}
-          <div className="flex items-center justify-between py-2 sm:py-3 border-b border-[#FFD700]/10">
-            <div className="flex items-center space-x-3 sm:space-x-6">
-              <Logo size="sm" />
-              <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm">
-                <a href="/sports" className="text-[#F5F5F5]/80 hover:text-[#FFD700] transition-colors">
+          <div className="flex items-center justify-between py-2 border-b border-[#2A3F55]">
+            <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6">
+              <Logo size="large" />
+              <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-sm">
+                <Link href="/" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   Sports
-                </a>
-                <a href="/in-play" className="text-[#FFD700] font-semibold border-b-2 border-[#FFD700] pb-1">
+                </Link>
+                <Link href="/in-play" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   In-Play
-                </a>
-                <a href="/casino" className="text-[#F5F5F5]/80 hover:text-[#FFD700] transition-colors">
+                </Link>
+                <Link href="/casino" className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors">
                   Casino
-                </a>
+                </Link>
               </nav>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <span className="hidden sm:inline text-[#F5F5F5]/70 text-xs sm:text-sm">Help</span>
-              <Link href="/auth/signup">
-                <AnimatedButton
-                  variant=""
-                  className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 text-xs sm:text-sm px-3 sm:px-4"
-                  size="sm"
-                >
-                  Join
-                </AnimatedButton>
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+              <span className="hidden md:inline text-[#B8C5D6] text-xs lg:text-sm">Responsible Gambling</span>
+              <span className="hidden sm:inline text-[#B8C5D6] text-xs lg:text-sm">Help</span>
+              <Link href="/auth/signup" className="hidden sm:inline">
+                <BrandedButton variant="primary" size="sm">
+                  Join Now
+                </BrandedButton>
               </Link>
-              <Link href="/auth/login">
-                <AnimatedButton
-                  variant="glass"
-                  className="text-white border-[#FFD700]/30 hover:border-[#FFD700] text-xs sm:text-sm px-3 sm:px-4"
-                  size="sm"
-                >
+              <Link href="/auth/login" className="hidden sm:inline">
+                <BrandedButton variant="secondary" size="sm">
                   Log In
-                </AnimatedButton>
+                </BrandedButton>
               </Link>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 text-[#B8C5D6] hover:text-[#FFD700]"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <MenuIcon className="w-5 h-5" />}
+              </button>
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="py-2 sm:py-3">
+          {mobileMenuOpen && (
+            <div className="lg:hidden py-4 border-b border-[#2A3F55]">
+              <nav className="flex flex-col space-y-3">
+                <Link
+                  href="/"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sports
+                </Link>
+                <Link
+                  href="/in-play"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  In-Play
+                </Link>
+                <Link
+                  href="/casino"
+                  className="text-[#B8C5D6] hover:text-[#FFD700] transition-colors px-2 py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Casino
+                </Link>
+                <div className="flex flex-col space-y-2 pt-2 sm:hidden">
+                  <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <BrandedButton variant="primary" size="sm" className="w-full">
+                      Join Now
+                    </BrandedButton>
+                  </Link>
+                  <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
+                    <BrandedButton variant="secondary" size="sm" className="w-full">
+                      Log In
+                    </BrandedButton>
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          )}
+
+          {/* Main Navigation */}
+          <div className="py-3">
             <div className="flex items-center justify-between">
-              <div className="flex-1 max-w-md">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#F5F5F5]/50" />
+              <div className="flex items-center space-x-8"></div>
+              <div className="flex items-center space-x-4 flex-1 justify-end">
+                <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#B8C5D6]" />
                   <input
                     type="text"
-                    placeholder="Search matches..."
-                    className="pl-10 pr-4 py-2 w-full bg-[#0A1A2F]/50 border border-[#FFD700]/20 rounded-lg text-white placeholder-[#F5F5F5]/50 focus:outline-none focus:border-[#FFD700] text-sm"
+                    placeholder="Search"
+                    className="pl-10 pr-4 py-2 w-full bg-[#1A2F45] border border-[#2A3F55] rounded-lg text-[#F5F5F5] text-sm placeholder-[#B8C5D6] focus:outline-none focus:border-[#FFD700]"
                   />
                 </div>
               </div>
@@ -82,7 +128,7 @@ export default function inplay() {
         </div>
       </header>
 
-      <main className="relative container mx-auto px-3 sm:px-4 lg:px-6 pt-32 sm:pt-36 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+      <main className="relative container mx-auto px-3 sm:px-4 lg:px-6 pt-36 mt-10 sm:pt-36 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
         {/* Left column - Matches list */}
         <section className="lg:col-span-8 space-y-4">
           <div className="rounded-lg overflow-hidden border border-[#FFD700]/20 bg-[#0A1A2F]/80 backdrop-blur-sm shadow-xl">
