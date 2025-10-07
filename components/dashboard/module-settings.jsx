@@ -1,8 +1,8 @@
 "use client"
 import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Trophy, Gamepad2, Dices, Save, RotateCcw } from "lucide-react"
+import { BrandedButton } from "@/components/ui/branded-button"
+import { Trophy, Gamepad2, Dices, Save, RotateCcw, Copy, Check } from "lucide-react"
 
 export function ModuleSettings() {
   const [modules, setModules] = useState({
@@ -12,6 +12,8 @@ export function ModuleSettings() {
   })
 
   const [saved, setSaved] = useState(false)
+  const [betId] = useState("GB-" + Math.random().toString(36).substr(2, 9).toUpperCase())
+  const [copiedBetId, setCopiedBetId] = useState(false)
 
   const toggleModule = (module) => {
     setModules((prev) => ({
@@ -35,6 +37,12 @@ export function ModuleSettings() {
       casino: true,
     })
     setSaved(false)
+  }
+
+  const copyBetId = () => {
+    navigator.clipboard.writeText(betId)
+    setCopiedBetId(true)
+    setTimeout(() => setCopiedBetId(false), 2000)
   }
 
   const moduleConfig = [
@@ -62,14 +70,82 @@ export function ModuleSettings() {
   ]
 
   return (
-    <div className="pb-20 px-6 pt-6">
+    <div className="pb-20 px-4 sm:px-6 pt-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold">Module Settings</h1>
-          <p className="text-muted-foreground">Enable or disable betting modules</p>
+          <h1 className="text-2xl font-bold">Settings</h1>
+          <p className="text-muted-foreground">Manage your account and preferences</p>
         </div>
       </div>
+
+      <Card3D className="mb-8">
+        <div className="glass p-4 sm:p-6 rounded-2xl">
+          <h3 className="font-bold text-lg mb-2">Your Bet ID</h3>
+          <p className="text-sm text-muted-foreground mb-4">Use this unique ID to track your bets and transactions</p>
+
+          {/* Fixed width table container to prevent movement */}
+          <div className="w-full overflow-hidden">
+            <table className="w-full border-collapse table-fixed">
+              <thead>
+                <tr className="border-b-2 border-[#FFD700]">
+                  <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-bold text-[#FFD700] w-[25%]">
+                    Field
+                  </th>
+                  <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-bold text-[#FFD700] w-[50%]">
+                    Value
+                  </th>
+                  <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-bold text-[#FFD700] w-[25%]">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[#2A3F55] hover:bg-white/5 transition-colors">
+                  <td className="py-4 px-2 sm:px-4 font-medium text-sm">Bet ID</td>
+                  <td className="py-4 px-2 sm:px-4">
+                    <code className="bg-[#1A2F45] px-2 sm:px-3 py-1 rounded text-[#FFD700] font-mono text-xs sm:text-sm break-all">
+                      {betId}
+                    </code>
+                  </td>
+                  <td className="py-4 px-2 sm:px-4">
+                    <button
+                      onClick={copyBetId}
+                      className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 bg-[#FFD700] text-[#0A1A2F] rounded font-bold text-xs sm:text-sm hover:bg-[#FFD700]/90 transition-colors whitespace-nowrap"
+                    >
+                      {copiedBetId ? (
+                        <>
+                          <Check className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="hidden sm:inline">Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="hidden sm:inline">Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b border-[#2A3F55] hover:bg-white/5 transition-colors">
+                  <td className="py-4 px-2 sm:px-4 font-medium text-sm">Status</td>
+                  <td className="py-4 px-2 sm:px-4">
+                    <span className="inline-block px-2 sm:px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-bold">
+                      Active
+                    </span>
+                  </td>
+                  <td className="py-4 px-2 sm:px-4 text-muted-foreground text-sm">-</td>
+                </tr>
+                <tr className="hover:bg-white/5 transition-colors">
+                  <td className="py-4 px-2 sm:px-4 font-medium text-sm">Created</td>
+                  <td className="py-4 px-2 sm:px-4 text-muted-foreground text-sm">{new Date().toLocaleDateString()}</td>
+                  <td className="py-4 px-2 sm:px-4 text-muted-foreground text-sm">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Card3D>
 
       {/* Save Status */}
       {saved && (
@@ -79,6 +155,11 @@ export function ModuleSettings() {
       )}
 
       {/* Module Toggles */}
+      <div className="mb-4">
+        <h2 className="text-xl font-bold mb-4">Module Settings</h2>
+        <p className="text-sm text-muted-foreground mb-4">Enable or disable betting modules</p>
+      </div>
+
       <div className="space-y-4 mb-8">
         {moduleConfig.map((module) => (
           <Card3D key={module.id}>
@@ -139,26 +220,30 @@ export function ModuleSettings() {
 
       {/* Action Buttons */}
       <div className="flex gap-4">
-        <AnimatedButton
+        <BrandedButton
           variant="primary"
           className="flex-1 flex items-center justify-center gap-2"
           onClick={saveSettings}
         >
           <Save className="w-5 h-5" />
           Save Settings
-        </AnimatedButton>
-        <AnimatedButton variant="glass" className="flex items-center justify-center gap-2 px-6" onClick={resetSettings}>
+        </BrandedButton>
+        <BrandedButton
+          variant="secondary"
+          className="flex items-center justify-center gap-2 px-6"
+          onClick={resetSettings}
+        >
           <RotateCcw className="w-5 h-5" />
           Reset
-        </AnimatedButton>
+        </BrandedButton>
       </div>
 
       {/* Info Card */}
       <Card3D className="mt-8">
         <div className="glass p-6 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20">
-          <h3 className="font-bold mb-2">About Module Settings</h3>
+          <h3 className="font-bold mb-2">About Settings</h3>
           <p className="text-sm text-muted-foreground">
-            Module settings allow you to customize your betting experience by enabling or disabling specific features.
+            Customize your betting experience by managing your Bet ID and enabling or disabling specific features.
             Changes will take effect immediately after saving.
           </p>
         </div>

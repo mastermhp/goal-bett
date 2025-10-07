@@ -6,6 +6,19 @@ import { LandPlot, MonitorDot, Search, Trophy, MenuIcon, X, Receipt } from "luci
 import Link from "next/link"
 import BottomNavigation from "@/components/ui/bottom-navigation"
 import { BetSlip } from "@/components/dashboard/bet-slip"
+import {
+  AnimatedCricketIcon,
+  AnimatedSoccerIcon,
+  AnimatedCasinoIcon,
+  AnimatedBasketballIcon,
+  AnimatedHorsesIcon,
+  AnimatedEsportsIcon,
+  AnimatedTennisIcon,
+  AnimatedVirtualIcon,
+  AnimatedBoxingIcon,
+  AnimatedGolfIcon,
+  AnimatedFormula1Icon,
+} from "@/components/ui/animated-sport-icons"
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
@@ -341,20 +354,17 @@ export default function HomePage() {
             <div className="bg-[#0D1F35]/80 backdrop-blur-sm border border-[#2A3F55] rounded-xl p-3 md:p-4 shadow-xl mb-4 md:mb-6">
               <div className="flex items-center justify-start md:justify-center space-x-4 md:space-x-8 overflow-x-auto pb-2 scrollbar-hide">
                 {[
-                  { name: "Cricket", icon: <img src="/sports/cricket.png" alt="Cricket" className="h-10 md:h-14" /> },
-                  { name: "Soccer", icon: <img src="/sports/soccer.png" alt="soccer" className="h-10 md:h-14" /> },
-                  { name: "Casino", icon: <img src="/sports/casino.png" alt="casino" className="h-8 md:h-12" /> },
-                  {
-                    name: "Basketball",
-                    icon: <img src="/sports/basketball.png" alt="Basketball" className="h-8 md:h-12" />,
-                  },
-                  { name: "Horses", icon: <img src="/sports/horse.png" alt="Horses" className="h-8 md:h-12" /> },
-                  { name: "Esports", icon: <img src="/sports/esports.png" alt="Esports" className="h-8 md:h-12" /> },
-                  { name: "Tennis", icon: <img src="/sports/tennis.png" alt="Tennis" className="h-8 md:h-12" /> },
-                  { name: "Virtual", icon: <img src="/sports/virtual.png" alt="Virtual" className="h-8 md:h-12" /> },
-                  { name: "Boxing", icon: <img src="/sports/boxing.png" alt="Boxing" className="h-8 md:h-12" /> },
-                  { name: "Golf", icon: <img src="/sports/golf.png" alt="Golf" className="h-8 md:h-12" /> },
-                  { name: "Formula 1", icon: <img src="/sports/formula1.png" alt="Formula" className="h-8 md:h-12" /> },
+                  { name: "Cricket", icon: <AnimatedCricketIcon className="h-10 md:h-14" /> },
+                  { name: "Soccer", icon: <AnimatedSoccerIcon className="h-10 md:h-14" /> },
+                  { name: "Casino", icon: <AnimatedCasinoIcon className="h-8 md:h-12" /> },
+                  { name: "Basketball", icon: <AnimatedBasketballIcon className="h-8 md:h-12" /> },
+                  { name: "Horses", icon: <AnimatedHorsesIcon className="h-8 md:h-12" /> },
+                  { name: "Esports", icon: <AnimatedEsportsIcon className="h-8 md:h-12" /> },
+                  { name: "Tennis", icon: <AnimatedTennisIcon className="h-8 md:h-12" /> },
+                  { name: "Virtual", icon: <AnimatedVirtualIcon className="h-8 md:h-12" /> },
+                  { name: "Boxing", icon: <AnimatedBoxingIcon className="h-8 md:h-12" /> },
+                  { name: "Golf", icon: <AnimatedGolfIcon className="h-8 md:h-12" /> },
+                  { name: "Formula 1", icon: <AnimatedFormula1Icon className="h-8 md:h-12" /> },
                 ].map((sport, index) => (
                   <div key={index} className="flex flex-col items-center space-y-1 min-w-0 flex-shrink-0">
                     <div className="w-16 h-14 md:w-20 md:h-18 bg-[#1A2F45] rounded-lg border border-[#2A3F55] p-2 md:p-4 shadow-xl flex items-center justify-center text-xl hover:bg-[#FFD700]/20 hover:border-[#FFD700] transition-colors cursor-pointer">
