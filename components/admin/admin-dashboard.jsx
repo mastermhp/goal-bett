@@ -1,12 +1,32 @@
 "use client"
 import { useState } from "react"
 import { Card3D } from "@/components/ui/3d-card"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Users, DollarSign, Activity, Settings, LogOut, Menu, X, BarChart3, Receipt, Shield, Bell } from "lucide-react"
+import { BrandedButton } from "@/components/ui/branded-button"
+import {
+  Users,
+  DollarSign,
+  Activity,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  BarChart3,
+  Receipt,
+  Shield,
+  Bell,
+  Upload,
+  ImageIcon,
+} from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [advertisements, setAdvertisements] = useState([
+    { id: 1, title: "Welcome Bonus 100%", image: "/casino-bonus.png", active: true },
+    { id: 2, title: "Jackpot Madness", image: "/jackpot-slots.jpg", active: true },
+  ])
+  const [showAdUpload, setShowAdUpload] = useState(false)
 
   const stats = [
     { label: "Total Users", value: "12,543", change: "+12.5%", icon: Users, color: "from-blue-500 to-blue-600" },
@@ -126,6 +146,80 @@ export function AdminDashboard() {
             ))}
           </div>
 
+          {/* Advertisement Management Section */}
+          <Card3D className="mb-8">
+            <div className="glass p-6 rounded-2xl">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-bold text-xl mb-1">Advertisement Management</h3>
+                  <p className="text-sm text-muted-foreground">Upload and manage promotional banners</p>
+                </div>
+                <BrandedButton variant="primary" size="sm" onClick={() => setShowAdUpload(!showAdUpload)}>
+                  <Upload className="w-4 h-4" />
+                  Upload Ad
+                </BrandedButton>
+              </div>
+
+              {showAdUpload && (
+                <div className="mb-6 p-4 bg-[#1A2F45] border border-[#2A3F55] rounded-xl">
+                  <h4 className="font-semibold mb-3">Upload New Advertisement</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm mb-2">Ad Title</label>
+                      <input
+                        type="text"
+                        placeholder="Enter advertisement title"
+                        className="w-full px-4 py-2 bg-[#0D1F35] border border-[#2A3F55] rounded-lg text-[#F5F5F5] focus:outline-none focus:border-[#FFD700]"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2">Upload Image</label>
+                      <div className="border-2 border-dashed border-[#2A3F55] rounded-lg p-8 text-center hover:border-[#FFD700] transition-colors cursor-pointer">
+                        <ImageIcon className="w-12 h-12 mx-auto mb-2 text-[#B8C5D6]" />
+                        <p className="text-sm text-[#B8C5D6]">Click to upload or drag and drop</p>
+                        <p className="text-xs text-[#B8C5D6] mt-1">PNG, JPG up to 5MB</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <BrandedButton variant="primary" size="sm" className="flex-1">
+                        Save Advertisement
+                      </BrandedButton>
+                      <BrandedButton variant="secondary" size="sm" onClick={() => setShowAdUpload(false)}>
+                        Cancel
+                      </BrandedButton>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {advertisements.map((ad) => (
+                  <div key={ad.id} className="bg-[#1A2F45] border border-[#2A3F55] rounded-xl p-4">
+                    <div className="relative h-32 mb-3 rounded-lg overflow-hidden">
+                      <Image src={ad.image || "/placeholder.svg"} alt={ad.title} fill className="object-cover" />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="font-semibold">{ad.title}</h4>
+                        <span className={`text-xs ${ad.active ? "text-green-400" : "text-red-400"}`}>
+                          {ad.active ? "Active" : "Inactive"}
+                        </span>
+                      </div>
+                      <div className="flex gap-2">
+                        <button className="px-3 py-1 bg-[#FFD700] text-[#0A1A2F] rounded text-xs font-bold hover:bg-[#FFD700]/90">
+                          Edit
+                        </button>
+                        <button className="px-3 py-1 bg-red-500/20 text-red-400 rounded text-xs font-bold hover:bg-red-500/30">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card3D>
+
           {/* Charts Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <Card3D>
@@ -177,9 +271,9 @@ export function AdminDashboard() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-bold">Recent Bets</h3>
                 <Link href="/admin/bets">
-                  <AnimatedButton variant="glass" size="sm">
+                  <BrandedButton variant="secondary" size="sm">
                     View All
-                  </AnimatedButton>
+                  </BrandedButton>
                 </Link>
               </div>
               <div className="overflow-x-auto">

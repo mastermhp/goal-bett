@@ -1,9 +1,11 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Logo } from "@/components/ui/logo"
-import { AnimatedButton } from "@/components/ui/animated-button"
+import { BrandedButton } from "@/components/ui/branded-button"
+import { PromotionalBanner } from "@/components/ui/promotional-banner"
 import { LandPlot, MonitorDot, Search, Trophy, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
@@ -182,22 +184,14 @@ export default function HomePage() {
               <span className="hidden md:inline text-[#B8C5D6] text-xs lg:text-sm">Responsible Gambling</span>
               <span className="hidden sm:inline text-[#B8C5D6] text-xs lg:text-sm">Help</span>
               <Link href="/auth/signup" className="hidden sm:inline">
-                <AnimatedButton
-                  variant=""
-                  className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 text-xs lg:text-sm px-3 lg:px-4"
-                  size="sm"
-                >
-                  Join
-                </AnimatedButton>
+                <BrandedButton variant="primary" size="sm">
+                  Join Now
+                </BrandedButton>
               </Link>
               <Link href="/auth/login" className="hidden sm:inline">
-                <AnimatedButton
-                  variant="glass"
-                  className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700] text-xs lg:text-sm px-3 lg:px-4"
-                  size="sm"
-                >
+                <BrandedButton variant="secondary" size="sm">
                   Log In
-                </AnimatedButton>
+                </BrandedButton>
               </Link>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -234,22 +228,14 @@ export default function HomePage() {
                 </Link>
                 <div className="flex flex-col space-y-2 pt-2 sm:hidden">
                   <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
-                    <AnimatedButton
-                      variant=""
-                      className="bg-[#FFD700] text-[#0A1A2F] hover:bg-[#FFD700]/90 w-full"
-                      size="sm"
-                    >
-                      Join
-                    </AnimatedButton>
+                    <BrandedButton variant="primary" size="sm" className="w-full">
+                      Join Now
+                    </BrandedButton>
                   </Link>
                   <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
-                    <AnimatedButton
-                      variant="glass"
-                      className="text-[#F5F5F5] border-[#2A3F55] hover:border-[#FFD700] w-full"
-                      size="sm"
-                    >
+                    <BrandedButton variant="secondary" size="sm" className="w-full">
                       Log In
-                    </AnimatedButton>
+                    </BrandedButton>
                   </Link>
                 </div>
               </nav>
@@ -339,6 +325,68 @@ export default function HomePage() {
               <MenuIcon className="w-5 h-5" />
               <span>Browse Sports</span>
             </button>
+
+            {/* Promotional Banner Component */}
+            <PromotionalBanner />
+
+            {/* Hero Section with Sports and Casino Visuals */}
+            <div className="bg-gradient-to-r from-[#0D1F35] via-[#1A2F45] to-[#0D1F35] border border-[#FFD700]/30 rounded-2xl p-6 md:p-8 shadow-2xl mb-6 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <Image src="/sports-betting-interface.jpg" alt="" fill className="object-cover" />
+              </div>
+              <div className="relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="relative h-48 rounded-xl overflow-hidden border-2 border-[#FFD700]/50 group">
+                    <Image
+                      src="/abstract-sports-betting-background.jpg"
+                      alt="Sports Betting"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-transparent to-transparent flex items-end p-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-[#FFD700] mb-1">Sports Betting</h3>
+                        <p className="text-sm text-[#F5F5F5]">Live odds on 1000+ matches daily</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative h-48 rounded-xl overflow-hidden border-2 border-[#FFD700]/50 group">
+                    <Image
+                      src="/casino-roulette-table.jpg"
+                      alt="Casino Games"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-transparent to-transparent flex items-end p-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-[#FFD700] mb-1">Casino Games</h3>
+                        <p className="text-sm text-[#F5F5F5]">Slots, Roulette, Blackjack & More</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#F5F5F5] mb-3">
+                    Welcome to Goal-Bett - Your Premier Betting Destination
+                  </h2>
+                  <p className="text-[#B8C5D6] mb-4">
+                    Experience the thrill of sports betting and casino games with the best odds in the market
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <Link href="/auth/signup">
+                      <BrandedButton variant="primary" size="lg">
+                        Join Now & Get Bonus
+                      </BrandedButton>
+                    </Link>
+                    <Link href="/dashboard/casino">
+                      <BrandedButton variant="accent" size="lg">
+                        Explore Casino
+                      </BrandedButton>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Sports Category Icons */}
             <div className="bg-[#0D1F35]/80 backdrop-blur-sm border border-[#2A3F55] rounded-xl p-3 md:p-4 shadow-xl mb-4 md:mb-6">
@@ -480,6 +528,13 @@ export default function HomePage() {
                       </div>
                       <div className="text-xs text-[#B8C5D6] mb-3 hidden sm:block">{match.mainOdds.returns}</div>
                       <div className="text-xs text-[#B8C5D6]">{match.time}</div>
+                    </div>
+
+                    {/* Bet Now Button */}
+                    <div className="mt-3">
+                      <BrandedButton variant="primary" size="sm" className="w-full">
+                        Bet Now
+                      </BrandedButton>
                     </div>
                   </div>
                 ))}
