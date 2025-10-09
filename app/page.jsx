@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Logo } from "@/components/ui/logo"
 import { BrandedButton } from "@/components/ui/branded-button"
 import { PromotionalBanner } from "@/components/ui/promotional-banner"
+import { FloatingGuestBetslip } from "@/components/guest/floating-guest-betslip"
 import { LandPlot, MonitorDot, Search, Trophy, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -25,6 +26,7 @@ export default function HomePage() {
   const [selectedSport, setSelectedSport] = useState("soccer")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+  const [guestBetSlipOpen, setGuestBetSlipOpen] = useState(false) // This state is no longer directly used but kept for potential future use or if FloatingGuestBetslip internally manages a similar state.
 
   useEffect(() => {
     setMounted(true)
@@ -111,6 +113,42 @@ export default function HomePage() {
       },
       time: "Sat 27 Sep",
     },
+    {
+      id: 5,
+      teams: "ARSENAL V LIVERPOOL",
+      league: "Premier League",
+      betBoost: "BET BOOST",
+      placed: "892 placed",
+      markets: [
+        { type: "Both Teams to Score", odds: null },
+        { type: "Over 2.5 Goals", odds: null },
+        { type: "Mohamed Salah: Anytime Goalscorer", odds: null },
+      ],
+      mainOdds: {
+        was: "9.00",
+        now: "11.00",
+        returns: "$10 stake returns $110",
+      },
+      time: "Sun 28 Sep",
+    },
+    {
+      id: 6,
+      teams: "REAL MADRID V BARCELONA",
+      league: "La Liga",
+      betBoost: "BET BOOST",
+      placed: "1245 placed",
+      markets: [
+        { type: "Vinicius Jr: 1+ Shots on Target", odds: null },
+        { type: "Robert Lewandowski: Anytime Goalscorer", odds: null },
+        { type: "Over 3 Corners in 1st Half", odds: null },
+      ],
+      mainOdds: {
+        was: "14.00",
+        now: "16.50",
+        returns: "$10 stake returns $165",
+      },
+      time: "Sun 28 Sep",
+    },
   ]
 
   const liveMatches = [
@@ -143,12 +181,30 @@ export default function HomePage() {
     },
     {
       id: 4,
-      team1: "Once Caldas",
-      team2: "",
-      score1: null,
-      score2: null,
-      odds: [],
-      time: "",
+      team1: "River Plate",
+      team2: "Boca Juniors",
+      score1: 2,
+      score2: 1,
+      odds: ["1.85", "3.40", "4.20"],
+      time: "67:15",
+    },
+    {
+      id: 5,
+      team1: "Flamengo",
+      team2: "Palmeiras",
+      score1: 1,
+      score2: 1,
+      odds: ["2.10", "3.20", "3.50"],
+      time: "55:30",
+    },
+    {
+      id: 6,
+      team1: "Santos",
+      team2: "Corinthians",
+      score1: 0,
+      score2: 2,
+      odds: ["4.50", "3.80", "1.70"],
+      time: "72:45",
     },
   ]
 
@@ -171,6 +227,19 @@ export default function HomePage() {
     { id: "gaelic-sports", name: "Gaelic Sports", icon: "🥍" },
     { id: "golf", name: "Golf", icon: "⛳" },
   ]
+
+  const addToGuestBetslip = (match, selection, odds) => {
+    const bet = {
+      id: `${match.id}-${selection}-${Date.now()}`,
+      match: match.teams || `${match.team1} vs ${match.team2}`,
+      selection: selection,
+      odds: Number.parseFloat(odds),
+      stake: 10,
+    }
+
+    // Dispatch custom event to notify betslip
+    window.dispatchEvent(new CustomEvent("addGuestBet", { detail: bet }))
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A1A2F] via-[#0D1F35] to-[#0A1A2F] text-[#F5F5F5] relative overflow-x-hidden">
@@ -510,11 +579,15 @@ export default function HomePage() {
                       <div className="text-xs text-[#B8C5D6]">{match.time}</div>
                     </div>
 
-                    {/* Bet Now Button */}
                     <div className="mt-3">
-                      <BrandedButton variant="primary" size="sm" className="w-full">
+                      <button
+                        onClick={() =>
+                          addToGuestBetslip(match, "Bet Boost Combo", Number.parseFloat(match.mainOdds.now))
+                        }
+                        className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-[#0A1A2F] hover:from-[#FFD700]/90 hover:to-[#FFA500]/90 font-bold py-2 rounded-lg transition-all duration-300 hover:scale-105 text-sm"
+                      >
                         Bet Now
-                      </BrandedButton>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -562,17 +635,20 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      {/* Betting Odds */}
                       <div className="col-span-5 md:col-span-7">
                         <div className="grid grid-cols-3 gap-1 md:gap-2">
-                          {match.odds.map((odd, index) => (
-                            <button
-                              key={index}
-                              className="bg-[#1A2F45] border border-[#2A3F55] hover:bg-[#FFD700] hover:text-[#0A1A2F] text-[#F5F5F5] p-1.5 md:p-2 rounded text-xs md:text-sm font-bold transition-colors"
-                            >
-                              {odd}
-                            </button>
-                          ))}
+                          {match.odds.map((odd, index) => {
+                            const selections = ["Home Win", "Draw", "Away Win"]
+                            return (
+                              <button
+                                key={index}
+                                onClick={() => addToGuestBetslip(match, selections[index], odd)}
+                                className="bg-[#1A2F45] border border-[#2A3F55] hover:bg-[#FFD700] hover:text-[#0A1A2F] text-[#F5F5F5] p-1.5 md:p-2 rounded text-xs md:text-sm font-bold transition-all duration-300 hover:scale-105"
+                              >
+                                {odd}
+                              </button>
+                            )
+                          })}
                         </div>
                       </div>
                     </div>
@@ -587,6 +663,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <FloatingGuestBetslip />
 
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
