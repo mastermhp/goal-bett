@@ -218,15 +218,7 @@ export default function HomePage() {
               </nav>
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
-              <button
-                onClick={() => setBetSlipOpen(true)}
-                className="relative p-2 text-[#B8C5D6] hover:text-[#FFD700] transition-colors"
-              >
-                <Receipt className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#FFD700] text-[#0A1A2F] rounded-full text-xs font-bold flex items-center justify-center">
-                  2
-                </span>
-              </button>
+              
               <Link href="/dashboard/wallet" className="sm:inline">
                 <Wallet className="w-7 h-7 text-[#FFD700] hover:text-[#FFD700]/70" />
               </Link>
@@ -606,8 +598,12 @@ export default function HomePage() {
         </div>
       </div>
 
-      <BottomNavigation />
+      <BottomNavigation
+        onBetSlipClick={() => setBetSlipOpen(true)}
+        betSlipCount={2}
+      />
       <BetSlip isOpen={betSlipOpen} onClose={() => setBetSlipOpen(false)} />
+
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
